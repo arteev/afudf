@@ -1,0 +1,59 @@
+-- 1.5.7
+-- Entry points VersionAFUDF->Version VersionExAFUDF->VersionEx
+-- 1.4.3
+--  * using ib_util.ib_util_malloc library
+--  * fix VersionAFUDF,VersionExAFUDF,GetTypeOS, MsgLastErrorObj: returns value with free_it
+--  * Type handle of object: integer -> bigint for x64_86 build
+
+DECLARE EXTERNAL FUNCTION GetLastErrorObj
+    BIGINT
+RETURNS INTEGER BY VALUE
+ENTRY_POINT 'GetLastErrorObj' MODULE_NAME 'afcommon';
+
+DECLARE EXTERNAL FUNCTION MsgLastErrorObj
+    BIGINT
+RETURNS CSTRING(1024) FREE_IT
+ENTRY_POINT 'MsgLastErrorObj' MODULE_NAME 'afcommon';
+
+
+DECLARE EXTERNAL FUNCTION WasErrorObj
+    BIGINT
+RETURNS INTEGER BY VALUE
+ENTRY_POINT 'WasErrorObj' MODULE_NAME 'afcommon';
+
+
+DECLARE EXTERNAL FUNCTION WasErrorIsExceptionObj
+    BIGINT
+RETURNS INTEGER BY VALUE
+ENTRY_POINT 'WasErrorIsExceptionObj' MODULE_NAME 'afcommon';
+
+
+
+DECLARE EXTERNAL FUNCTION SetMsgErrorExceptionObj
+    BIGINT,
+    CSTRING(255)
+RETURNS INTEGER BY VALUE
+ENTRY_POINT 'SetMsgErrorExceptionObj' MODULE_NAME 'afcommon';
+
+DECLARE EXTERNAL FUNCTION FreeAFObject
+    BIGINT
+RETURNS INTEGER BY VALUE
+ENTRY_POINT 'FreeAFObject' MODULE_NAME 'afcommon';
+
+CREATE EXCEPTION EXCEPTION_AFUDF 'EXCEPTION_AFUDF';
+
+--1.1.4
+DECLARE EXTERNAL FUNCTION VersionAFUDF
+RETURNS CSTRING(20) FREE_IT
+ENTRY_POINT 'Version' MODULE_NAME 'afcommon';
+
+DECLARE EXTERNAL FUNCTION VersionExAFUDF
+RETURNS CSTRING(20) FREE_IT
+ENTRY_POINT 'VersionEx' MODULE_NAME 'afcommon';
+
+DECLARE EXTERNAL FUNCTION GetTypeOS
+RETURNS CSTRING(20) FREE_IT
+ENTRY_POINT 'GetTypeOS' MODULE_NAME 'afcommon';
+
+
+-- 1.5.7  DelCharsFromBlob moved into afumisc

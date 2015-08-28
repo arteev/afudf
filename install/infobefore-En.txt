@@ -1,0 +1,6 @@
+Library AFUDF for Firebird used to work with files, XML, DBF, ZIP, text files from stored procedures and triggers database Firebird.
+To work with the AFUDF use scripts SQL registration functions in a particular database.
+  
+   - == WARNING! == -
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

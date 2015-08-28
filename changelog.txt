@@ -1,0 +1,91 @@
+1.5.7
+[*] Code refactoring: all modules
+[*] Translated comments
+[+] TextFile: ReadCharFromTextFile,ReadInt32FromTextFile,ReadInt64FromTextFile,WriteCharToTextFile,WriteInt32ToTextFile,WriteInt64ToTextFile
+[+] Misc: removed GetFirstWord
+[+] Optional: Build mode UsePtrInt  on arch32 pointer is 32bit ; arch64  -> 64bit
+[*] some fix warning
+
+1.5
+[+] Xml: DTD
+[+] Crypt: unused zlib, using crc
+[*] Memory leak fixed: handle=XmlXPathEval, must be FreeAFObject
+
+
+1.4.3
+
+[*] Все функции и процедуры использующие handle (указатели на объекты) теперь
+    64-битные (BIGINT)
+
+[*] Для xml добавлена поддержка XPath:
+        XmlXPathEval,
+        XmlXPathNodeSetCount,
+        XmlXPathEvalValueStr,
+        XmlXPathEvalValueNum,
+        XmlXPathNodeSetItem
+
+[*] GetTypeOS: определяет теперь: linux-i386, linux-X64_86, win32, win64
+
+[*] Изменен способ возврата значений строковых:
+      afcommon:
+               GetTypeOS
+               VersionAFUDF
+               VersionExAFUDF,
+               MsgLastErrorObj
+
+      afutextfile:
+               ReadLnFromTextFile
+      afmisc:
+               GenGuid
+      afcrypt:
+               CryptSha1String
+               CryptSha1BLOB
+               CryptSha1File
+               CryptMD5
+               CryptMD5Blob
+               CryptMD5File
+               CryptCRC32
+               CryptCRC32Blob
+               CryptCRC32File
+      afufile:
+               FSFindRecName
+      afudbf:
+               GetFieldNameDBFByIndex
+               GetValueDBFFieldByName
+      afuxml:  некоторые функции возвращающие строки
+
+[*] afutextfile: текст ошибки теперь расшифрованы по коду (IOResult)
+[+] afutextfile: добавлена функция AppendTextFile открытия файла для записи в конец файла
+[*] Рефакторинг и оптимизация: загрузки и чтения из/в Blob в модулях afufile, afuxml
+[*] XML: парсинг поддерживет любую кодировку
+
+
+
+
+1.3.1
+[+] Функция GetTypeOS
+[+] Функция возвращающая версию в модуль Common: VERSIONEXAFUDF VERSIONAFUDF
+[+] Тесты исправлены: +VERSIONEXAFUDF +VERSIONAFUDF
+[+] Скрипт для прогона тестов
+[*] DELCHARSFROMBLOB мусор в блобе справа
+[-] Удалена GenBarCode
+[+] Сборка через make (Makefile.fpc)
+[*] Сборка пакета для linux без зависимосети от FirebirdSS и наличия запущенного
+    демона
+[+] Корректная работа на Firebird Classic Server
+[*] Устранены ошибки доступа к памяти в некоторых библиотеках
+[*] Устанены утечки памяти в модуле xml
+[+] Обнаружена утечка памяти в функции FindFirst (не устранена)
+
+1.3.0.1017.RC2
+ [+] linux-x86_64
+ [*] Исправлены ошибки при сборке и установке пакетов rpm
+
+
+1.3.0.901.RC1
+ [*] Таблица перекодировки cp866 (не верный код символа для №)
+
+
+
+
+ ///2. Функция с входным параметром которая обновит RDB$MODULE_NAME c параметром P1,EXT для adufile.dll -> P1||'adufile'||EXT

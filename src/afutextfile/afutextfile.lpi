@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectOptions>
+    <Version Value="9"/>
+    <General>
+      <MainUnit Value="0"/>
+      <UseXPManifest Value="True"/>
+      <Icon Value="0"/>
+      <ActiveWindowIndexAtStart Value="-1"/>
+    </General>
+    <VersionInfo>
+      <UseVersionInfo Value="True"/>
+      <AutoIncrementBuild Value="True"/>
+      <MajorVersionNr Value="1"/>
+      <MinorVersionNr Value="5"/>
+      <RevisionNr Value="5"/>
+      <BuildNr Value="137"/>
+      <StringTable Comments="AFUDF Library" FileDescription="AFUDF Library" InternalName="afutextfile" LegalCopyright="OAO Pharmacy" ProductName="AFUDF Library" ProductVersion="1.5"/>
+    </VersionInfo>
+    <BuildModes Count="4" Active="win64">
+      <Item1 Name="linux-x64_86" Default="True"/>
+      <Item2 Name="linux-i386">
+        <CompilerOptions>
+          <Version Value="11"/>
+          <Target>
+            <Filename Value="../../build/$TargetOS()-$TargetCPU()/afutextfile"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="../common;$(ProjOutDir)"/>
+            <Libraries Value="../../build/$TargetOS()-$TargetCPU()"/>
+            <OtherUnitFiles Value="../common"/>
+            <UnitOutputDirectory Value="../../build/$TargetOS()-$TargetCPU()"/>
+          </SearchPaths>
+          <Parsing>
+            <SyntaxOptions>
+              <UseAnsiStrings Value="False"/>
+            </SyntaxOptions>
+          </Parsing>
+          <CodeGeneration>
+            <SmartLinkUnit Value="True"/>
+            <TargetCPU Value="i386"/>
+            <TargetOS Value="linux"/>
+            <Optimizations>
+              <OptimizationLevel Value="2"/>
+            </Optimizations>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <GenerateDebugInfo Value="False"/>
+              <UseLineInfoUnit Value="False"/>
+              <StripSymbols Value="True"/>
+            </Debugging>
+            <LinkSmart Value="True"/>
+            <Options>
+              <ExecutableType Value="Library"/>
+            </Options>
+          </Linking>
+        </CompilerOptions>
+      </Item2>
+      <Item3 Name="win32 (debug)">
+        <CompilerOptions>
+          <Version Value="11"/>
+          <Target>
+            <Filename Value="../../build/$TargetOS()-$TargetCPU()/afutextfile"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="../common;$(ProjOutDir)"/>
+            <Libraries Value="../../build/$TargetOS()-$TargetCPU()"/>
+            <OtherUnitFiles Value="../common"/>
+            <UnitOutputDirectory Value="../../build/$TargetOS()-$TargetCPU()"/>
+          </SearchPaths>
+          <Parsing>
+            <SyntaxOptions>
+              <UseAnsiStrings Value="False"/>
+            </SyntaxOptions>
+          </Parsing>
+          <CodeGeneration>
+            <TargetCPU Value="i386"/>
+            <TargetOS Value="win32"/>
+            <Optimizations>
+              <OptimizationLevel Value="0"/>
+            </Optimizations>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <GenerateDebugInfo Value="False"/>
+              <UseLineInfoUnit Value="False"/>
+              <StripSymbols Value="True"/>
+            </Debugging>
+            <Options>
+              <ExecutableType Value="Library"/>
+            </Options>
+          </Linking>
+          <Other>
+            <CustomOptions Value="-oC:\Progra~2\Firebird\Firebi~2\UDF\afutextfile.dll
+-dDEBUG"/>
+          </Other>
+        </CompilerOptions>
+      </Item3>
+      <Item4 Name="win64">
+        <CompilerOptions>
+          <Version Value="11"/>
+          <Target>
+            <Filename Value="../../build/$TargetOS()-$TargetCPU()/afutextfile"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="../common;$(ProjOutDir)"/>
+            <Libraries Value="../../build/$TargetOS()-$TargetCPU()"/>
+            <OtherUnitFiles Value="../common"/>
+            <UnitOutputDirectory Value="../../build/lib/$TargetOS()-$TargetCPU()"/>
+          </SearchPaths>
+          <Parsing>
+            <SyntaxOptions>
+              <UseAnsiStrings Value="False"/>
+            </SyntaxOptions>
+          </Parsing>
+          <CodeGeneration>
+            <TargetCPU Value="x86_64"/>
+            <TargetOS Value="win64"/>
+            <Optimizations>
+              <OptimizationLevel Value="0"/>
+            </Optimizations>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <GenerateDebugInfo Value="False"/>
+              <UseLineInfoUnit Value="False"/>
+              <StripSymbols Value="True"/>
+            </Debugging>
+            <Options>
+              <ExecutableType Value="Library"/>
+            </Options>
+          </Linking>
+        </CompilerOptions>
+      </Item4>
+    </BuildModes>
+    <PublishOptions>
+      <Version Value="2"/>
+      <IgnoreBinaries Value="False"/>
+      <IncludeFileFilter Value="*.(pas|pp|inc|lfm|lpr|lrs|lpi|lpk|sh|xml)"/>
+      <ExcludeFileFilter Value="*.(bak|ppu|ppw|o|so);*~;backup"/>
+    </PublishOptions>
+    <RunParams>
+      <local>
+        <FormatVersion Value="1"/>
+        <LaunchingApplication PathPlusParams="/usr/X11R6/bin/xterm -T 'Lazarus Run Output' -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
+      </local>
+    </RunParams>
+    <RequiredPackages Count="1">
+      <Item1>
+        <PackageName Value="LCL"/>
+      </Item1>
+    </RequiredPackages>
+    <Units Count="18">
+      <Unit0>
+        <Filename Value="afutextfile.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="21"/>
+        <CursorPos X="53" Y="46"/>
+        <UsageCount Value="48"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="../common/uafudfs.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="184"/>
+        <CursorPos X="6" Y="211"/>
+        <UsageCount Value="48"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="uaftextfile.pas"/>
+        <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="76" Y="16"/>
+        <UsageCount Value="48"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="../common/sharememudf.pas"/>
+        <TopLine Value="19"/>
+        <CursorPos X="43" Y="21"/>
+        <UsageCount Value="8"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="/usr/share/fpcsrc/rtl/inc/objpash.inc"/>
+        <TopLine Value="52"/>
+        <CursorPos X="8" Y="66"/>
+        <UsageCount Value="8"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="../../../../d.work.farm/AFUDF-FPC/Sources/common/sharememudf.pas"/>
+        <TopLine Value="26"/>
+        <CursorPos Y="20"/>
+        <UsageCount Value="8"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="/usr/share/fpcsrc/rtl/unix/crt.pp"/>
+        <UnitName Value="Crt"/>
+        <CursorPos X="40" Y="10"/>
+        <UsageCount Value="8"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="../../../../d.work.farm/AFUDF-FPC/Sources/common/uafudfs.pas"/>
+        <TopLine Value="74"/>
+        <CursorPos X="49" Y="86"/>
+        <UsageCount Value="8"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="/usr/share/fpcsrc/rtl/inc/systemh.inc"/>
+        <TopLine Value="708"/>
+        <CursorPos X="10" Y="723"/>
+        <UsageCount Value="8"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="../../../../workok/fpc_fixes/fpc_2_6_4/rtl/inc/systemh.inc"/>
+        <TopLine Value="991"/>
+        <CursorPos X="18" Y="1015"/>
+        <UsageCount Value="8"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="../../../../workok/fpc_fixes/fpc_2_6_4/rtl/inc/system.inc"/>
+        <TopLine Value="642"/>
+        <CursorPos X="11" Y="695"/>
+        <UsageCount Value="8"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="../common/ioresdecode.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="3" Y="64"/>
+        <UsageCount Value="44"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="../../changelog.txt"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="89" Y="18"/>
+        <UsageCount Value="42"/>
+        <DefaultSyntaxHighlighter Value="None"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="../common/ib_util.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UsageCount Value="41"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="../../../../utils/lazarus1.4.x64/fpc/2.6.4/source/rtl/objpas/sysutils/sysinth.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="119"/>
+        <CursorPos X="57" Y="134"/>
+        <UsageCount Value="9"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="../../../../utils/lazarus1.4.x64/fpc/2.6.4/source/rtl/win/sysutils.pp"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1204"/>
+        <UsageCount Value="8"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="../../../../utils/lazarus1.4.x64/fpc/2.6.4/source/rtl/inc/systemh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="78"/>
+        <CursorPos X="23" Y="113"/>
+        <UsageCount Value="10"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="../../../../utils/lazarus1.4.x64/fpc/2.6.4/source/rtl/objpas/objpas.pp"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="63"/>
+        <CursorPos X="16" Y="78"/>
+        <UsageCount Value="8"/>
+      </Unit17>
+    </Units>
+    <JumpHistory HistoryIndex="-1"/>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="11"/>
+    <Target>
+      <Filename Value="../../build/$TargetOS()-$TargetCPU()/afutextfile"/>
+    </Target>
+    <SearchPaths>
+      <IncludeFiles Value="../common;$(ProjOutDir)"/>
+      <Libraries Value="../../build/$TargetOS()-$TargetCPU()"/>
+      <OtherUnitFiles Value="../common"/>
+      <UnitOutputDirectory Value="../../build/$TargetOS()-$TargetCPU()"/>
+    </SearchPaths>
+    <Parsing>
+      <SyntaxOptions>
+        <UseAnsiStrings Value="False"/>
+      </SyntaxOptions>
+    </Parsing>
+    <CodeGeneration>
+      <SmartLinkUnit Value="True"/>
+      <TargetCPU Value="x86_64"/>
+      <TargetOS Value="linux"/>
+      <Optimizations>
+        <OptimizationLevel Value="2"/>
+      </Optimizations>
+    </CodeGeneration>
+    <Linking>
+      <Debugging>
+        <GenerateDebugInfo Value="False"/>
+        <UseLineInfoUnit Value="False"/>
+        <StripSymbols Value="True"/>
+      </Debugging>
+      <LinkSmart Value="True"/>
+      <Options>
+        <ExecutableType Value="Library"/>
+      </Options>
+    </Linking>
+  </CompilerOptions>
+  <Debugging>
+    <Exceptions Count="3">
+      <Item1>
+        <Name Value="EAbort"/>
+      </Item1>
+      <Item2>
+        <Name Value="ECodetoolError"/>
+      </Item2>
+      <Item3>
+        <Name Value="EFOpenError"/>
+      </Item3>
+    </Exceptions>
+  </Debugging>
+</CONFIG>

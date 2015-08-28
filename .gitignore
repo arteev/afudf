@@ -1,0 +1,16 @@
+*.lpi.bak
+src/*/*.bak
+build/*
+build/linux-x86_64/*
+build/linux-i386/*
+build/win32-i386/*
+install/afudf.spec~
+*.*~
+tests/*.fdb
+*~
+output/*
+backup/*
+src/*/backup
+resource/win32-i386/*
+resource/win64-x86_64/*
+todo.txt

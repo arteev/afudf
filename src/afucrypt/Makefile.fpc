@@ -1,0 +1,63 @@
+#
+#   Makefile.fpc for AFUDF module afucrypt
+#
+
+[default]
+
+[package]
+name=afudf-$(AFUDFMODULE)
+version=$(AFUDFVERSION)
+
+[target]
+programs=$(AFUDFMODULE)
+
+[require]
+#packages=rtl
+
+[clean]
+units=$(AFUDFMODULE)
+files=$(wildcard *.bak)
+
+[compiler]
+options= $(LAZARUS_LIBPATHS)   -XX -Xs -CX -O2  $(USEPTRINT)        
+
+unitdir=.  $(LAZDIR)/lcl/units/$(CPU_TARGET)-$(OS_TARGET) \
+           $(LAZDIR)/lcl/units/$(CPU_TARGET)-$(OS_TARGET)/$(LCL_PLATFORM) \
+           $(LAZDIR)/packager/units/$(CPU_TARGET)-$(OS_TARGET) \
+           ../common \
+           ../cmnunits  \
+            $(BUILDDIR)
+
+includedir=. ../common ../cmnunits $(BUILDDIR)
+librarydir=$(BUILDDIR)
+unittargetdir=$(LIBDIR)
+targetdir=$(BUILDDIR)
+
+[prerules]
+AFUDFMODULE=afucrypt
+BUILDDIR=../../build/$(OS_TARGET)-$(CPU_TARGET)
+LIBDIR=../../build/lib/$(CPU_TARGET)-$(OS_TARGET)
+ifdef UsePtrInt
+USEPTRINT = -dUsePtrInt
+endif
+
+# LCL Platform
+ifndef LCL_PLATFORM
+LCL_PLATFORM=nogui
+endif
+
+ifneq ($(findstring $(OS_SOURCE),win32 win64),)
+AFUDFVERSION=$(shell ..\..\tools\get_version.bat)
+else
+AFUDFVERSION=$(shell ../../tools/get_version.sh)
+endif
+
+
+
+[rules]
+.PHONY: all
+
+all:
+        $(MKDIR) $(BUILDDIR)
+	$(MKDIR) $(LIBDIR)
+        $(MAKE) --assume-new=$(AFUDFMODULE).lpr $(AFUDFMODULE)$(EXEEXT)

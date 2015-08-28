@@ -1,0 +1,57 @@
+#
+#   Makefile.fpc for AFUDF module afcommon
+#
+
+[default]
+#fpcdir=/home/inferno/workok/fpc_fixes/fpc_2_6_4
+
+[package]
+name=afudf-afcommon
+version=$(AFUDFVERSION)
+
+[target]
+dirs=src/afmmngr src/afcommon src/afucrypt  src/afudbf  src/afufile  src/afumisc  src/afutextfile  src/afuxml  src/afuzip
+
+[require]
+#packages=rtl
+
+[clean]
+
+[compiler]
+
+
+[prerules]
+#LAZDIR=/usr/local/lazarus
+# LCL Platform
+ifndef LCL_PLATFORM
+ifneq ($(findstring $(OS_TARGET),win32 ),)
+LCL_PLATFORM=win32
+else
+ifeq ($(findstring $(OS_TARGET),win64 ),)
+LCL_PLATFORM=win64
+else
+ifeq ($(OS_TARGET),wince)
+LCL_PLATFORM=wince
+else
+ifeq ($(OS_TARGET),darwin)
+LCL_PLATFORM=carbon
+else
+LCL_PLATFORM=gtk2
+endif
+endif
+endif
+endif
+endif
+
+ifneq ($(findstring $(OS_SOURCE),win32 win64),)
+AFUDFVERSION=$(shell .\tools\get_version.bat)
+else
+AFUDFVERSION=$(shell ./tools/get_version.sh)
+endif
+
+
+[rules]
+.PHONY: afcommon_all
+
+#all: 
+#        $(MAKE) --assume-new=afmmngr.lpr afmmngr

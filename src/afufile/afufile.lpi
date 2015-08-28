@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectOptions>
+    <Version Value="9"/>
+    <General>
+      <MainUnit Value="0"/>
+      <UseXPManifest Value="True"/>
+      <Icon Value="0"/>
+    </General>
+    <VersionInfo>
+      <UseVersionInfo Value="True"/>
+      <AutoIncrementBuild Value="True"/>
+      <MajorVersionNr Value="1"/>
+      <MinorVersionNr Value="5"/>
+      <RevisionNr Value="5"/>
+      <BuildNr Value="35"/>
+      <StringTable Comments="AFUDF Library" FileDescription="AFUDF Library" InternalName="afufile" ProductName="AFUDF Library" ProductVersion="1.5"/>
+    </VersionInfo>
+    <MacroValues Count="1">
+      <Macro1 Name="LCLWidgetType" Value="nogui"/>
+    </MacroValues>
+    <BuildModes Count="4" Active="win64">
+      <Item1 Name="linux-x86_64" Default="True"/>
+      <Item2 Name="linux-i386">
+        <CompilerOptions>
+          <Version Value="11"/>
+          <Target>
+            <Filename Value="../../build/$TargetOS()-$TargetCPU()/afufile"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="../cmnunits;../common;$(ProjOutDir)"/>
+            <Libraries Value="../../build/$TargetOS()-$TargetCPU()"/>
+            <OtherUnitFiles Value="../cmnunits;../common"/>
+            <UnitOutputDirectory Value="../../build/lib/$TargetOS()-$TargetCPU()"/>
+          </SearchPaths>
+          <Parsing>
+            <SyntaxOptions>
+              <UseAnsiStrings Value="False"/>
+            </SyntaxOptions>
+          </Parsing>
+          <CodeGeneration>
+            <TargetCPU Value="i386"/>
+            <TargetOS Value="linux"/>
+            <Optimizations>
+              <OptimizationLevel Value="2"/>
+            </Optimizations>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <DebugInfoType Value="dsStabs"/>
+            </Debugging>
+            <Options>
+              <ExecutableType Value="Library"/>
+            </Options>
+          </Linking>
+        </CompilerOptions>
+      </Item2>
+      <Item3 Name="win32">
+        <CompilerOptions>
+          <Version Value="11"/>
+          <Target>
+            <Filename Value="../../build/$TargetOS()-$TargetCPU()/afufile"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="../cmnunits;../common;$(ProjOutDir)"/>
+            <Libraries Value="../../build/$TargetOS()-$TargetCPU()"/>
+            <OtherUnitFiles Value="../cmnunits;../common"/>
+            <UnitOutputDirectory Value="../../build/lib/$TargetOS()-$TargetCPU()"/>
+          </SearchPaths>
+          <Parsing>
+            <SyntaxOptions>
+              <UseAnsiStrings Value="False"/>
+            </SyntaxOptions>
+          </Parsing>
+          <CodeGeneration>
+            <TargetCPU Value="i386"/>
+            <TargetOS Value="win32"/>
+            <Optimizations>
+              <OptimizationLevel Value="0"/>
+            </Optimizations>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <DebugInfoType Value="dsStabs"/>
+            </Debugging>
+            <Options>
+              <ExecutableType Value="Library"/>
+            </Options>
+          </Linking>
+        </CompilerOptions>
+      </Item3>
+      <Item4 Name="win64">
+        <CompilerOptions>
+          <Version Value="11"/>
+          <Target>
+            <Filename Value="../../build/$TargetOS()-$TargetCPU()/afufile"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="../cmnunits;../common;$(ProjOutDir)"/>
+            <Libraries Value="../../build/$TargetOS()-$TargetCPU()"/>
+            <OtherUnitFiles Value="../cmnunits;../common"/>
+            <UnitOutputDirectory Value="../../build/lib/$TargetOS()-$TargetCPU()"/>
+          </SearchPaths>
+          <Parsing>
+            <SyntaxOptions>
+              <UseAnsiStrings Value="False"/>
+            </SyntaxOptions>
+          </Parsing>
+          <CodeGeneration>
+            <TargetCPU Value="x86_64"/>
+            <TargetOS Value="win64"/>
+            <Optimizations>
+              <OptimizationLevel Value="0"/>
+            </Optimizations>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <DebugInfoType Value="dsStabs"/>
+            </Debugging>
+            <Options>
+              <ExecutableType Value="Library"/>
+            </Options>
+          </Linking>
+        </CompilerOptions>
+      </Item4>
+      <SharedMatrixOptions Count="1">
+        <Item1 ID="353500675910" Modes="linux-x86_64" Type="IDEMacro" MacroName="LCLWidgetType" Value="nogui"/>
+      </SharedMatrixOptions>
+    </BuildModes>
+    <PublishOptions>
+      <Version Value="2"/>
+      <IgnoreBinaries Value="False"/>
+      <IncludeFileFilter Value="*.(pas|pp|inc|lfm|lpr|lrs|lpi|lpk|sh|xml)"/>
+      <ExcludeFileFilter Value="*.(bak|ppu|ppw|o|so);*~;backup"/>
+    </PublishOptions>
+    <RunParams>
+      <local>
+        <FormatVersion Value="1"/>
+        <HostApplicationFilename Value="c:/PROGRA~2/Firebird/Firebi~2/bin/fbserver.exe"/>
+        <CommandLineParams Value="-d"/>
+        <LaunchingApplication PathPlusParams="/usr/X11R6/bin/xterm -T 'Lazarus Run Output' -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
+        <WorkingDirectory Value="c:/PROGRA~2/Firebird/Firebi~2/bin"/>
+      </local>
+    </RunParams>
+    <RequiredPackages Count="1">
+      <Item1>
+        <PackageName Value="LCL"/>
+      </Item1>
+    </RequiredPackages>
+    <Units Count="20">
+      <Unit0>
+        <Filename Value="afufile.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="10"/>
+        <CursorPos X="22" Y="42"/>
+        <UsageCount Value="39"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="uaffile.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="243"/>
+        <CursorPos X="53" Y="262"/>
+        <UsageCount Value="39"/>
+        <Bookmarks Count="1">
+          <Item0 X="21" Y="236" ID="1"/>
+        </Bookmarks>
+        <Loaded Value="True"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="../cmnUnits/ufbblob.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UsageCount Value="39"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="../common/uafudfs.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="31"/>
+        <CursorPos X="33" Y="48"/>
+        <UsageCount Value="39"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="/usr/share/fpcsrc/rtl/objpas/sysutils/filutilh.inc"/>
+        <TopLine Value="56"/>
+        <CursorPos X="10" Y="74"/>
+        <UsageCount Value="10"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="/usr/share/fpcsrc/rtl/unix/sysutils.pp"/>
+        <TopLine Value="179"/>
+        <CursorPos X="63" Y="179"/>
+        <UsageCount Value="10"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="/usr/share/fpcsrc/rtl/objpas/sysutils/sysutilh.inc"/>
+        <TopLine Value="17"/>
+        <CursorPos X="4" Y="36"/>
+        <UsageCount Value="10"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="/usr/share/fpcsrc/rtl/inc/wstringh.inc"/>
+        <TopLine Value="63"/>
+        <CursorPos X="35" Y="88"/>
+        <UsageCount Value="10"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="/usr/share/fpcsrc/rtl/inc/systemh.inc"/>
+        <TopLine Value="215"/>
+        <CursorPos X="3" Y="234"/>
+        <UsageCount Value="10"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="../../../../d.work.farm/AFUDF-FPC/Sources/common/uafudfs.pas"/>
+        <TopLine Value="136"/>
+        <CursorPos X="29" Y="157"/>
+        <UsageCount Value="11"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="../../../../workok/fpc/trunk/rtl/objpas/sysutils/filutilh.inc"/>
+        <TopLine Value="74"/>
+        <CursorPos X="11" Y="88"/>
+        <UsageCount Value="11"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="../../../../workok/fpc/trunk/rtl/unix/sysutils.pp"/>
+        <TopLine Value="778"/>
+        <CursorPos X="15" Y="799"/>
+        <UsageCount Value="11"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="../../../../workok/fpc/trunk/rtl/inc/heaph.inc"/>
+        <TopLine Value="70"/>
+        <CursorPos X="10" Y="89"/>
+        <UsageCount Value="10"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="../../changelog.txt"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="2"/>
+        <CursorPos X="32" Y="11"/>
+        <UsageCount Value="25"/>
+        <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="None"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="../../../../workok/lazarus/lazarus/lcl/interfaces/nogui/interfaces.pp"/>
+        <UnitName Value="Interfaces"/>
+        <CursorPos X="3" Y="21"/>
+        <UsageCount Value="10"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="../../../../utils/lazarus1.2/fpc/2.6.2/source/rtl/objpas/sysutils/filutilh.inc"/>
+        <TopLine Value="82"/>
+        <CursorPos X="11" Y="98"/>
+        <UsageCount Value="10"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="../../../../utils/lazarus1.2/fpc/2.6.2/source/rtl/unix/sysutils.pp"/>
+        <TopLine Value="244"/>
+        <CursorPos X="14" Y="260"/>
+        <UsageCount Value="10"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="../../../../utils/lazarus1.4.x64/fpc/2.6.4/source/rtl/objpas/sysutils/filutilh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="74"/>
+        <CursorPos X="10" Y="97"/>
+        <UsageCount Value="10"/>
+      </Unit17>
+      <Unit18>
+        <Filename Value="../../../../utils/lazarus1.4.x64/fpc/2.6.4/source/rtl/objpas/sysutils/sysutilh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="14"/>
+        <CursorPos X="4" Y="34"/>
+        <UsageCount Value="10"/>
+      </Unit18>
+      <Unit19>
+        <Filename Value="../../../../utils/lazarus1.4.x64/fpc/2.6.4/source/rtl/win/sysosh.inc"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="3" Y="19"/>
+        <UsageCount Value="10"/>
+      </Unit19>
+    </Units>
+    <JumpHistory Count="28" HistoryIndex="27">
+      <Position1>
+        <Filename Value="uaffile.pas"/>
+        <Caret Line="131" Column="25" TopLine="115"/>
+      </Position1>
+      <Position2>
+        <Filename Value="uaffile.pas"/>
+        <Caret Line="38" Column="55" TopLine="17"/>
+      </Position2>
+      <Position3>
+        <Filename Value="uaffile.pas"/>
+        <Caret Line="40" Column="39" TopLine="17"/>
+      </Position3>
+      <Position4>
+        <Filename Value="uaffile.pas"/>
+        <Caret Line="96" Column="55" TopLine="77"/>
+      </Position4>
+      <Position5>
+        <Filename Value="uaffile.pas"/>
+        <Caret Line="107" Column="19" TopLine="89"/>
+      </Position5>
+      <Position6>
+        <Filename Value="uaffile.pas"/>
+        <Caret Line="120" Column="39" TopLine="101"/>
+      </Position6>
+      <Position7>
+        <Filename Value="uaffile.pas"/>
+        <Caret Line="123" Column="14" TopLine="113"/>
+      </Position7>
+      <Position8>
+        <Filename Value="uaffile.pas"/>
+        <Caret Line="129" Column="20" TopLine="113"/>
+      </Position8>
+      <Position9>
+        <Filename Value="uaffile.pas"/>
+        <Caret Line="265" Column="53" TopLine="249"/>
+      </Position9>
+      <Position10>
+        <Filename Value="uaffile.pas"/>
+        <Caret Line="253" TopLine="247"/>
+      </Position10>
+      <Position11>
+        <Filename Value="uaffile.pas"/>
+        <Caret Line="254" TopLine="247"/>
+      </Position11>
+      <Position12>
+        <Filename Value="uaffile.pas"/>
+        <Caret Line="255" TopLine="247"/>
+      </Position12>
+      <Position13>
+        <Filename Value="uaffile.pas"/>
+        <Caret Line="256" TopLine="247"/>
+      </Position13>
+      <Position14>
+        <Filename Value="uaffile.pas"/>
+        <Caret Line="257" TopLine="247"/>
+      </Position14>
+      <Position15>
+        <Filename Value="uaffile.pas"/>
+        <Caret Line="258" TopLine="247"/>
+      </Position15>
+      <Position16>
+        <Filename Value="uaffile.pas"/>
+        <Caret Line="263" Column="24" TopLine="247"/>
+      </Position16>
+      <Position17>
+        <Filename Value="uaffile.pas"/>
+        <Caret Line="261" TopLine="247"/>
+      </Position17>
+      <Position18>
+        <Filename Value="uaffile.pas"/>
+        <Caret Line="263" TopLine="247"/>
+      </Position18>
+      <Position19>
+        <Filename Value="uaffile.pas"/>
+        <Caret Line="182" Column="45" TopLine="156"/>
+      </Position19>
+      <Position20>
+        <Filename Value="uaffile.pas"/>
+        <Caret Line="253" Column="3" TopLine="249"/>
+      </Position20>
+      <Position21>
+        <Filename Value="uaffile.pas"/>
+        <Caret Line="183" Column="87" TopLine="87"/>
+      </Position21>
+      <Position22>
+        <Filename Value="uaffile.pas"/>
+        <Caret Line="19" Column="30"/>
+      </Position22>
+      <Position23>
+        <Filename Value="uaffile.pas"/>
+        <Caret Line="268" Column="31" TopLine="241"/>
+      </Position23>
+      <Position24>
+        <Filename Value="uaffile.pas"/>
+        <Caret Line="260" Column="42" TopLine="236"/>
+      </Position24>
+      <Position25>
+        <Filename Value="uaffile.pas"/>
+        <Caret Line="257" Column="17" TopLine="236"/>
+      </Position25>
+      <Position26>
+        <Filename Value="uaffile.pas"/>
+        <Caret Line="251" Column="32" TopLine="236"/>
+      </Position26>
+      <Position27>
+        <Filename Value="uaffile.pas"/>
+        <Caret Line="99" Column="18" TopLine="75"/>
+      </Position27>
+      <Position28>
+        <Filename Value="uaffile.pas"/>
+        <Caret Line="63" Column="16" TopLine="54"/>
+      </Position28>
+    </JumpHistory>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="11"/>
+    <Target>
+      <Filename Value="../../build/$TargetOS()-$TargetCPU()/afufile"/>
+    </Target>
+    <SearchPaths>
+      <IncludeFiles Value="../cmnunits;../common;$(ProjOutDir)"/>
+      <Libraries Value="../../build/$TargetOS()-$TargetCPU()"/>
+      <OtherUnitFiles Value="../cmnunits;../common"/>
+      <UnitOutputDirectory Value="../../build/lib/$TargetOS()-$TargetCPU()"/>
+    </SearchPaths>
+    <Parsing>
+      <SyntaxOptions>
+        <UseAnsiStrings Value="False"/>
+      </SyntaxOptions>
+    </Parsing>
+    <CodeGeneration>
+      <TargetCPU Value="x86_64"/>
+      <TargetOS Value="linux"/>
+      <Optimizations>
+        <OptimizationLevel Value="2"/>
+      </Optimizations>
+    </CodeGeneration>
+    <Linking>
+      <Debugging>
+        <DebugInfoType Value="dsStabs"/>
+      </Debugging>
+      <Options>
+        <ExecutableType Value="Library"/>
+      </Options>
+    </Linking>
+  </CompilerOptions>
+  <Debugging>
+    <Exceptions Count="3">
+      <Item1>
+        <Name Value="EAbort"/>
+      </Item1>
+      <Item2>
+        <Name Value="ECodetoolError"/>
+      </Item2>
+      <Item3>
+        <Name Value="EFOpenError"/>
+      </Item3>
+    </Exceptions>
+  </Debugging>
+</CONFIG>

@@ -1,0 +1,27 @@
+1 VERSIONINFO
+FILEVERSION 1,3,0,21
+PRODUCTVERSION 1,0,0,0
+{
+ BLOCK "StringFileInfo"
+ {
+  BLOCK "040904E4"
+  {
+   VALUE "Comments", "AFUDF Library\000"
+   VALUE "CompanyName", "\000"
+   VALUE "FileDescription", "AFUDF Library\000"
+   VALUE "FileVersion", "1.3.0.21\000"
+   VALUE "InternalName", "afufile\000"
+   VALUE "LegalCopyright", "\000"
+   VALUE "LegalTrademarks", "\000"
+   VALUE "OriginalFilename", "\000"
+   VALUE "ProductName", "AFUDF Library\000"
+   VALUE "ProductVersion", "1.0.0.0\000"
+  }
+ }
+ BLOCK "VarFileInfo"
+ {
+  VALUE "Translation", 0x0409, 0x04E4
+ }
+}
+
+MAINICON ICON "afufile.ico"

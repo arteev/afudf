@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectOptions>
+    <Version Value="9"/>
+    <General>
+      <MainUnit Value="0"/>
+      <UseXPManifest Value="True"/>
+      <Icon Value="0"/>
+    </General>
+    <VersionInfo>
+      <UseVersionInfo Value="True"/>
+      <AutoIncrementBuild Value="True"/>
+      <MajorVersionNr Value="1"/>
+      <MinorVersionNr Value="5"/>
+      <RevisionNr Value="5"/>
+      <BuildNr Value="186"/>
+      <StringTable Comments="AFUDF Library" FileDescription="AFUDF Library" InternalName="afucrypt" LegalCopyright="OAO Pharmacy" ProductName="AFUDF Library" ProductVersion="1.5"/>
+    </VersionInfo>
+    <BuildModes Count="4" Active="win64">
+      <Item1 Name="linux-x86_64" Default="True"/>
+      <Item2 Name="linux-i386">
+        <CompilerOptions>
+          <Version Value="11"/>
+          <Target>
+            <Filename Value="../../build/$TargetOS()-$TargetCPU()/afucrypt"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="../cmnunits;../common;$(ProjOutDir)"/>
+            <Libraries Value="../../build/$TargetOS()-$TargetCPU()"/>
+            <OtherUnitFiles Value="../cmnunits;../common"/>
+            <UnitOutputDirectory Value="../../build/lib/$TargetOS()-$TargetCPU()"/>
+          </SearchPaths>
+          <Parsing>
+            <SyntaxOptions>
+              <UseAnsiStrings Value="False"/>
+            </SyntaxOptions>
+          </Parsing>
+          <CodeGeneration>
+            <TargetCPU Value="i386"/>
+            <TargetOS Value="linux"/>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <DebugInfoType Value="dsStabs"/>
+            </Debugging>
+            <Options>
+              <ExecutableType Value="Library"/>
+            </Options>
+          </Linking>
+        </CompilerOptions>
+      </Item2>
+      <Item3 Name="win32 (debug)">
+        <CompilerOptions>
+          <Version Value="11"/>
+          <Target>
+            <Filename Value="../../build/$TargetOS()-$TargetCPU()/afucrypt"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="../cmnunits;../common;$(ProjOutDir)"/>
+            <Libraries Value="../../build/$TargetOS()-$TargetCPU()"/>
+            <OtherUnitFiles Value="../cmnunits;../common"/>
+            <UnitOutputDirectory Value="../../build/lib/$TargetOS()-$TargetCPU()"/>
+          </SearchPaths>
+          <Parsing>
+            <SyntaxOptions>
+              <UseAnsiStrings Value="False"/>
+            </SyntaxOptions>
+          </Parsing>
+          <CodeGeneration>
+            <TargetCPU Value="i386"/>
+            <TargetOS Value="win32"/>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <DebugInfoType Value="dsStabs"/>
+            </Debugging>
+            <Options>
+              <ExecutableType Value="Library"/>
+            </Options>
+          </Linking>
+        </CompilerOptions>
+      </Item3>
+      <Item4 Name="win64">
+        <CompilerOptions>
+          <Version Value="11"/>
+          <Target>
+            <Filename Value="../../build/$TargetOS()-$TargetCPU()/afucrypt"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="../cmnunits;../common;$(ProjOutDir)"/>
+            <Libraries Value="../../build/$TargetOS()-$TargetCPU()"/>
+            <OtherUnitFiles Value="../cmnunits;../common"/>
+            <UnitOutputDirectory Value="../../build/lib/$TargetOS()-$TargetCPU()"/>
+          </SearchPaths>
+          <Parsing>
+            <SyntaxOptions>
+              <UseAnsiStrings Value="False"/>
+            </SyntaxOptions>
+          </Parsing>
+          <CodeGeneration>
+            <TargetCPU Value="x86_64"/>
+            <TargetOS Value="win64"/>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <DebugInfoType Value="dsStabs"/>
+            </Debugging>
+            <Options>
+              <ExecutableType Value="Library"/>
+            </Options>
+          </Linking>
+        </CompilerOptions>
+      </Item4>
+    </BuildModes>
+    <PublishOptions>
+      <Version Value="2"/>
+      <IgnoreBinaries Value="False"/>
+      <IncludeFileFilter Value="*.(pas|pp|inc|lfm|lpr|lrs|lpi|lpk|sh|xml)"/>
+      <ExcludeFileFilter Value="*.(bak|ppu|ppw|o|so);*~;backup"/>
+    </PublishOptions>
+    <RunParams>
+      <local>
+        <FormatVersion Value="1"/>
+        <HostApplicationFilename Value="c:/PROGRA~2/Firebird/Firebi~2/bin/fbserver.exe"/>
+        <CommandLineParams Value="-d"/>
+        <LaunchingApplication PathPlusParams="/usr/bin/gnome-terminal -t 'Lazarus Run Output' -e '$(LazarusDir)/tools/runwait.sh $(TargetCmdLine)'"/>
+        <WorkingDirectory Value="c:/PROGRA~2/Firebird/Firebi~2/bin/"/>
+      </local>
+    </RunParams>
+    <RequiredPackages Count="1">
+      <Item1>
+        <PackageName Value="LCL"/>
+      </Item1>
+    </RequiredPackages>
+    <Units Count="31">
+      <Unit0>
+        <Filename Value="afucrypt.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
+        <CursorPos X="59" Y="14"/>
+        <UsageCount Value="60"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="uafcrypt.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="75" Y="15"/>
+        <UsageCount Value="60"/>
+        <Bookmarks Count="2">
+          <Item0 X="3" Y="188" ID="1"/>
+          <Item1 X="4" Y="153" ID="2"/>
+        </Bookmarks>
+      </Unit1>
+      <Unit2>
+        <Filename Value="../common/uafudfs.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="96"/>
+        <CursorPos X="15" Y="116"/>
+        <UsageCount Value="60"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="../common/SHA/usha.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="6" Y="4"/>
+        <UsageCount Value="60"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="../common/SHA/sha.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="SHA"/>
+        <TopLine Value="193"/>
+        <CursorPos X="20" Y="208"/>
+        <UsageCount Value="60"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="../common/SHA/CryptoUtils.pas"/>
+        <IsPartOfProject Value="True"/>
+        <TopLine Value="38"/>
+        <CursorPos X="3" Y="42"/>
+        <UsageCount Value="60"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="../cmnunits/ufbblob.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="32"/>
+        <CursorPos X="17" Y="52"/>
+        <UsageCount Value="60"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="../../../../d.work.farm/AFUDF-FPC/Sources/common/SHA/usha.pas"/>
+        <TopLine Value="12"/>
+        <CursorPos X="3" Y="12"/>
+        <UsageCount Value="10"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="../../../../fpc/trunk/rtl/inc/systemh.inc"/>
+        <TopLine Value="663"/>
+        <CursorPos X="10" Y="678"/>
+        <UsageCount Value="9"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="../../../../fpc/trunk/rtl/x86_64/x86_64.inc"/>
+        <TopLine Value="668"/>
+        <CursorPos X="5" Y="671"/>
+        <UsageCount Value="9"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="../../../../fpc/trunk/rtl/inc/generic.inc"/>
+        <TopLine Value="2079"/>
+        <CursorPos X="5" Y="2081"/>
+        <UsageCount Value="9"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="../../../../fpc/trunk/rtl/inc/int64.inc"/>
+        <TopLine Value="118"/>
+        <CursorPos X="40" Y="118"/>
+        <UsageCount Value="9"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="../../../../workok/fpc/trunk/packages/hash/src/sha1.pp"/>
+        <TopLine Value="25"/>
+        <CursorPos X="22" Y="26"/>
+        <UsageCount Value="12"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="../../../../workok/fpc/trunk/packages/hash/src/crc.pas"/>
+        <TopLine Value="229"/>
+        <CursorPos X="5" Y="229"/>
+        <UsageCount Value="11"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="../../../../workok/fpc/trunk/rtl/inc/systemh.inc"/>
+        <TopLine Value="248"/>
+        <CursorPos X="10" Y="263"/>
+        <UsageCount Value="11"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="../../../../workok/fpc/trunk/rtl/objpas/objpas.pp"/>
+        <TopLine Value="201"/>
+        <CursorPos X="3" Y="216"/>
+        <UsageCount Value="11"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="../../../../workok/fpc/trunk/packages/zlib/src/zlib.pp"/>
+        <CursorPos Y="35"/>
+        <UsageCount Value="15"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="../../../../workok/fpc/trunk/rtl/unix/aliasctp.inc"/>
+        <TopLine Value="6"/>
+        <CursorPos X="3" Y="21"/>
+        <UsageCount Value="10"/>
+      </Unit17>
+      <Unit18>
+        <Filename Value="../../../../workok/fpc/trunk/rtl/unix/ctypes.inc"/>
+        <TopLine Value="9"/>
+        <CursorPos X="3" Y="24"/>
+        <UsageCount Value="10"/>
+      </Unit18>
+      <Unit19>
+        <Filename Value="../../../../workok/fpc/trunk/packages/hash/src/md5.pp"/>
+        <UsageCount Value="10"/>
+      </Unit19>
+      <Unit20>
+        <Filename Value="../../../../workok/fpc/trunk/rtl/objpas/sysutils/sysstrh.inc"/>
+        <TopLine Value="103"/>
+        <CursorPos X="10" Y="118"/>
+        <UsageCount Value="14"/>
+      </Unit20>
+      <Unit21>
+        <Filename Value="../../../../workok/fpc/trunk/rtl/objpas/sysutils/sysstr.inc"/>
+        <UsageCount Value="14"/>
+      </Unit21>
+      <Unit22>
+        <Filename Value="../../../../workok/fpc/trunk/rtl/objpas/classes/classesh.inc"/>
+        <TopLine Value="59"/>
+        <CursorPos X="13" Y="77"/>
+        <UsageCount Value="12"/>
+      </Unit22>
+      <Unit23>
+        <Filename Value="../cmnunits/ulogterm.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UsageCount Value="35"/>
+      </Unit23>
+      <Unit24>
+        <Filename Value="../common/smudfstatic.pas"/>
+        <TopLine Value="8"/>
+        <CursorPos X="3" Y="38"/>
+        <UsageCount Value="10"/>
+      </Unit24>
+      <Unit25>
+        <Filename Value="../../../../workok/fpc/trunk/rtl/inc/heaph.inc"/>
+        <TopLine Value="40"/>
+        <CursorPos X="11" Y="55"/>
+        <UsageCount Value="10"/>
+      </Unit25>
+      <Unit26>
+        <Filename Value="../../../../workok/fpc/trunk/rtl/inc/heap.inc"/>
+        <TopLine Value="238"/>
+        <CursorPos X="3" Y="240"/>
+        <UsageCount Value="10"/>
+      </Unit26>
+      <Unit27>
+        <Filename Value="../common/ib_util.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UsageCount Value="32"/>
+      </Unit27>
+      <Unit28>
+        <Filename Value="../../changelog.txt"/>
+        <IsPartOfProject Value="True"/>
+        <CursorPos X="47" Y="10"/>
+        <UsageCount Value="31"/>
+        <DefaultSyntaxHighlighter Value="None"/>
+      </Unit28>
+      <Unit29>
+        <Filename Value="../../../../utils/lazarus1.2/fpc/2.6.2/source/packages/hash/src/crc.pas"/>
+        <TopLine Value="16"/>
+        <CursorPos X="71" Y="30"/>
+        <UsageCount Value="10"/>
+      </Unit29>
+      <Unit30>
+        <Filename Value="../../../../utils/lazarus1.2/fpc/2.6.2/source/packages/zlib/src/zlib.pp"/>
+        <TopLine Value="1162"/>
+        <CursorPos X="61" Y="1185"/>
+        <UsageCount Value="10"/>
+      </Unit30>
+    </Units>
+    <JumpHistory Count="5" HistoryIndex="4">
+      <Position1>
+        <Filename Value="afucrypt.lpr"/>
+        <Caret Line="30" Column="39" TopLine="6"/>
+      </Position1>
+      <Position2>
+        <Filename Value="afucrypt.lpr"/>
+        <Caret Line="52" TopLine="6"/>
+      </Position2>
+      <Position3>
+        <Filename Value="afucrypt.lpr"/>
+        <Caret Line="25" Column="38"/>
+      </Position3>
+      <Position4>
+        <Filename Value="afucrypt.lpr"/>
+        <Caret Line="43" Column="37" TopLine="19"/>
+      </Position4>
+      <Position5>
+        <Filename Value="afucrypt.lpr"/>
+        <Caret Line="12" Column="73"/>
+      </Position5>
+    </JumpHistory>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="11"/>
+    <Target>
+      <Filename Value="../../build/$TargetOS()-$TargetCPU()/afucrypt"/>
+    </Target>
+    <SearchPaths>
+      <IncludeFiles Value="../cmnunits;../common;$(ProjOutDir)"/>
+      <Libraries Value="../../build/$TargetOS()-$TargetCPU()"/>
+      <OtherUnitFiles Value="../cmnunits;../common"/>
+      <UnitOutputDirectory Value="../../build/lib/$TargetOS()-$TargetCPU()"/>
+    </SearchPaths>
+    <Parsing>
+      <SyntaxOptions>
+        <UseAnsiStrings Value="False"/>
+      </SyntaxOptions>
+    </Parsing>
+    <CodeGeneration>
+      <TargetCPU Value="x86_64"/>
+      <TargetOS Value="linux"/>
+    </CodeGeneration>
+    <Linking>
+      <Debugging>
+        <DebugInfoType Value="dsStabs"/>
+      </Debugging>
+      <Options>
+        <ExecutableType Value="Library"/>
+      </Options>
+    </Linking>
+  </CompilerOptions>
+  <Debugging>
+    <Exceptions Count="3">
+      <Item1>
+        <Name Value="EAbort"/>
+      </Item1>
+      <Item2>
+        <Name Value="ECodetoolError"/>
+      </Item2>
+      <Item3>
+        <Name Value="EFOpenError"/>
+      </Item3>
+    </Exceptions>
+  </Debugging>
+</CONFIG>

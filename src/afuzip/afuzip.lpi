@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectOptions>
+    <Version Value="9"/>
+    <General>
+      <MainUnit Value="0"/>
+      <UseXPManifest Value="True"/>
+      <Icon Value="0"/>
+    </General>
+    <VersionInfo>
+      <UseVersionInfo Value="True"/>
+      <AutoIncrementBuild Value="True"/>
+      <MajorVersionNr Value="1"/>
+      <MinorVersionNr Value="5"/>
+      <RevisionNr Value="5"/>
+      <BuildNr Value="151"/>
+      <StringTable Comments="AFUDF Library" FileDescription="AFUDF Library" InternalName="afuzip" LegalCopyright="OAO Pharmacy" ProductName="AFUDF Library" ProductVersion="1.5"/>
+    </VersionInfo>
+    <BuildModes Count="4" Active="win64">
+      <Item1 Name="linux-x86_64" Default="True"/>
+      <Item2 Name="linux-i386">
+        <CompilerOptions>
+          <Version Value="11"/>
+          <Target>
+            <Filename Value="../../build/$TargetOS()-$TargetCPU()/afuzip"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="../cmnunits;../common;$(ProjOutDir)"/>
+            <Libraries Value="../../build/$TargetOS()-$TargetCPU()"/>
+            <OtherUnitFiles Value="../cmnunits;../common"/>
+            <UnitOutputDirectory Value="../../build/lib/$TargetOS()-$TargetCPU()"/>
+          </SearchPaths>
+          <Parsing>
+            <SyntaxOptions>
+              <UseAnsiStrings Value="False"/>
+            </SyntaxOptions>
+          </Parsing>
+          <CodeGeneration>
+            <SmartLinkUnit Value="True"/>
+            <TargetCPU Value="i386"/>
+            <TargetOS Value="linux"/>
+            <Optimizations>
+              <OptimizationLevel Value="2"/>
+            </Optimizations>
+          </CodeGeneration>
+          <Linking>
+            <Debugging>
+              <GenerateDebugInfo Value="False"/>
+              <UseLineInfoUnit Value="False"/>
+              <StripSymbols Value="True"/>
+            </Debugging>
+            <LinkSmart Value="True"/>
+            <Options>
+              <ExecutableType Value="Library"/>
+            </Options>
+          </Linking>
+        </CompilerOptions>
+      </Item2>
+      <Item3 Name="win32">
+        <CompilerOptions>
+          <Version Value="11"/>
+          <Target>
+            <Filename Value="../../build/$TargetOS()-$TargetCPU()/afuzip"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="../cmnunits;../common;$(ProjOutDir)"/>
+            <Libraries Value="../../build/$TargetOS()-$TargetCPU()"/>
+            <OtherUnitFiles Value="../cmnunits;../common"/>
+            <UnitOutputDirectory Value="../../build/lib/$TargetOS()-$TargetCPU()"/>
+          </SearchPaths>
+          <Parsing>
+            <SyntaxOptions>
+              <UseAnsiStrings Value="False"/>
+            </SyntaxOptions>
+          </Parsing>
+          <CodeGeneration>
+            <TargetCPU Value="i386"/>
+            <TargetOS Value="win32"/>
+            <Optimizations>
+              <OptimizationLevel Value="0"/>
+            </Optimizations>
+          </CodeGeneration>
+          <Linking>
+            <Options>
+              <ExecutableType Value="Library"/>
+            </Options>
+          </Linking>
+        </CompilerOptions>
+      </Item3>
+      <Item4 Name="win64">
+        <CompilerOptions>
+          <Version Value="11"/>
+          <Target>
+            <Filename Value="../../build/$TargetOS()-$TargetCPU()/afuzip"/>
+          </Target>
+          <SearchPaths>
+            <IncludeFiles Value="../cmnunits;../common;$(ProjOutDir)"/>
+            <Libraries Value="../../build/$TargetOS()-$TargetCPU()"/>
+            <OtherUnitFiles Value="../cmnunits;../common"/>
+            <UnitOutputDirectory Value="../../build/lib/$TargetOS()-$TargetCPU()"/>
+          </SearchPaths>
+          <Parsing>
+            <SyntaxOptions>
+              <UseAnsiStrings Value="False"/>
+            </SyntaxOptions>
+          </Parsing>
+          <CodeGeneration>
+            <TargetCPU Value="x86_64"/>
+            <TargetOS Value="win64"/>
+            <Optimizations>
+              <OptimizationLevel Value="0"/>
+            </Optimizations>
+          </CodeGeneration>
+          <Linking>
+            <Options>
+              <ExecutableType Value="Library"/>
+            </Options>
+          </Linking>
+        </CompilerOptions>
+      </Item4>
+    </BuildModes>
+    <PublishOptions>
+      <Version Value="2"/>
+      <IgnoreBinaries Value="False"/>
+      <IncludeFileFilter Value="*.(pas|pp|inc|lfm|lpr|lrs|lpi|lpk|sh|xml)"/>
+      <ExcludeFileFilter Value="*.(bak|ppu|ppw|o|so);*~;backup"/>
+    </PublishOptions>
+    <RunParams>
+      <local>
+        <FormatVersion Value="1"/>
+        <LaunchingApplication PathPlusParams="/usr/X11R6/bin/xterm -T 'Lazarus Run Output' -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
+      </local>
+    </RunParams>
+    <RequiredPackages Count="2">
+      <Item1>
+        <PackageName Value="CodeTools"/>
+        <MinVersion Major="1" Release="1" Valid="True"/>
+      </Item1>
+      <Item2>
+        <PackageName Value="LCL"/>
+      </Item2>
+    </RequiredPackages>
+    <Units Count="19">
+      <Unit0>
+        <Filename Value="afuzip.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="5" Y="47"/>
+        <UsageCount Value="31"/>
+        <LoadedDesigner Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="../common/uafudfs.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="58" Y="42"/>
+        <UsageCount Value="31"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="uafzip.pas"/>
+        <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="145"/>
+        <CursorPos X="5" Y="167"/>
+        <FoldState Value=" T3iA0C5"/>
+        <UsageCount Value="31"/>
+        <Loaded Value="True"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="../cmnunits/ufbblob.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="213"/>
+        <CursorPos X="24" Y="235"/>
+        <UsageCount Value="31"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="/usr/share/fpcsrc/packages/paszlib/src/zipper.pp"/>
+        <TopLine Value="313"/>
+        <CursorPos X="23" Y="344"/>
+        <UsageCount Value="12"/>
+        <Bookmarks Count="1">
+          <Item0 X="3" Y="1452" ID="1"/>
+        </Bookmarks>
+      </Unit4>
+      <Unit5>
+        <Filename Value="/usr/share/fpcsrc/packages/fcl-base/src/streamio.pp"/>
+        <UnitName Value="StreamIO"/>
+        <UsageCount Value="10"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="/usr/share/fpcsrc/rtl/unix/classes.pp"/>
+        <UnitName Value="Classes"/>
+        <UsageCount Value="10"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="/usr/share/fpcsrc/packages/paszlib/src/zip.pas"/>
+        <TopLine Value="61"/>
+        <CursorPos X="20" Y="6"/>
+        <UsageCount Value="10"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="/usr/share/fpcsrc/packages/paszlib/src/ziputils.pas"/>
+        <TopLine Value="85"/>
+        <UsageCount Value="10"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="../common/sharememudf.pas"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="31" Y="66"/>
+        <UsageCount Value="11"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="../common/uhandleobj.pas"/>
+        <IsPartOfProject Value="True"/>
+        <CursorPos X="2" Y="9"/>
+        <UsageCount Value="22"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="../../../../lazarus/lazarus/components/codetools/ppuparser.pas"/>
+        <UnitName Value="PPUParser"/>
+        <UsageCount Value="10"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="../../../../lazarus/lazarus/components/codetools/codetools.pas"/>
+        <TopLine Value="5"/>
+        <CursorPos X="61" Y="22"/>
+        <UsageCount Value="10"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="../../../../lazarus/lazarus/packager/registration/lazaruspackageintf.pas"/>
+        <UnitName Value="LazarusPackageIntf"/>
+        <CursorPos X="54" Y="28"/>
+        <UsageCount Value="10"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="../../../../LCLCOMPONENT/virtualtreeview/virtualtrees.pas"/>
+        <UnitName Value="VirtualTrees"/>
+        <UsageCount Value="10"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="../../../../workok/lazarus/lazarus/components/codetools/codetools.pas"/>
+        <UnitName Value="CodeTools"/>
+        <CursorPos X="43" Y="22"/>
+        <UsageCount Value="10"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="../common/ib_util.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UsageCount Value="21"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="../../changelog.txt"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="30" Y="13"/>
+        <UsageCount Value="21"/>
+        <DefaultSyntaxHighlighter Value="None"/>
+      </Unit17>
+      <Unit18>
+        <Filename Value="../../../../utils/lazarus1.2/packager/registration/fcllaz.pas"/>
+        <UsageCount Value="10"/>
+      </Unit18>
+    </Units>
+    <JumpHistory Count="19" HistoryIndex="18">
+      <Position1>
+        <Filename Value="uafzip.pas"/>
+        <Caret Line="224" Column="43" TopLine="186"/>
+      </Position1>
+      <Position2>
+        <Filename Value="uafzip.pas"/>
+        <Caret Line="208" Column="41" TopLine="189"/>
+      </Position2>
+      <Position3>
+        <Filename Value="uafzip.pas"/>
+        <Caret Line="71" Column="38" TopLine="48"/>
+      </Position3>
+      <Position4>
+        <Filename Value="uafzip.pas"/>
+        <Caret Line="28" Column="70" TopLine="12"/>
+      </Position4>
+      <Position5>
+        <Filename Value="uafzip.pas"/>
+        <Caret Line="77" Column="61" TopLine="77"/>
+      </Position5>
+      <Position6>
+        <Filename Value="uafzip.pas"/>
+        <Caret Line="28" Column="61" TopLine="27"/>
+      </Position6>
+      <Position7>
+        <Filename Value="uafzip.pas"/>
+        <Caret Line="77" Column="67" TopLine="77"/>
+      </Position7>
+      <Position8>
+        <Filename Value="uafzip.pas"/>
+        <Caret Line="28" Column="68" TopLine="27"/>
+      </Position8>
+      <Position9>
+        <Filename Value="uafzip.pas"/>
+        <Caret Line="94" Column="29" TopLine="77"/>
+      </Position9>
+      <Position10>
+        <Filename Value="uafzip.pas"/>
+        <Caret Line="27" Column="26" TopLine="7"/>
+      </Position10>
+      <Position11>
+        <Filename Value="uafzip.pas"/>
+        <Caret Line="209" Column="68" TopLine="190"/>
+      </Position11>
+      <Position12>
+        <Filename Value="uafzip.pas"/>
+        <Caret Line="24" Column="18"/>
+      </Position12>
+      <Position13>
+        <Filename Value="uafzip.pas"/>
+        <Caret Line="48" Column="39" TopLine="42"/>
+      </Position13>
+      <Position14>
+        <Filename Value="uafzip.pas"/>
+        <Caret Line="162" Column="23" TopLine="136"/>
+      </Position14>
+      <Position15>
+        <Filename Value="uafzip.pas"/>
+        <Caret Line="43" Column="49" TopLine="23"/>
+      </Position15>
+      <Position16>
+        <Filename Value="uafzip.pas"/>
+        <Caret Line="215" TopLine="179"/>
+      </Position16>
+      <Position17>
+        <Filename Value="uafzip.pas"/>
+        <Caret Line="41" TopLine="23"/>
+      </Position17>
+      <Position18>
+        <Filename Value="uafzip.pas"/>
+        <Caret Line="153" Column="49" TopLine="133"/>
+      </Position18>
+      <Position19>
+        <Filename Value="uafzip.pas"/>
+        <Caret Line="151" Column="5" TopLine="109"/>
+      </Position19>
+    </JumpHistory>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="11"/>
+    <Target>
+      <Filename Value="../../build/$TargetOS()-$TargetCPU()/afuzip"/>
+    </Target>
+    <SearchPaths>
+      <IncludeFiles Value="../cmnunits;../common;$(ProjOutDir)"/>
+      <Libraries Value="../../build/$TargetOS()-$TargetCPU()"/>
+      <OtherUnitFiles Value="../cmnunits;../common"/>
+      <UnitOutputDirectory Value="../../build/lib/$TargetOS()-$TargetCPU()"/>
+    </SearchPaths>
+    <Parsing>
+      <SyntaxOptions>
+        <UseAnsiStrings Value="False"/>
+      </SyntaxOptions>
+    </Parsing>
+    <CodeGeneration>
+      <SmartLinkUnit Value="True"/>
+      <TargetCPU Value="x86_64"/>
+      <TargetOS Value="linux"/>
+      <Optimizations>
+        <OptimizationLevel Value="2"/>
+      </Optimizations>
+    </CodeGeneration>
+    <Linking>
+      <Debugging>
+        <GenerateDebugInfo Value="False"/>
+        <UseLineInfoUnit Value="False"/>
+        <StripSymbols Value="True"/>
+      </Debugging>
+      <LinkSmart Value="True"/>
+      <Options>
+        <ExecutableType Value="Library"/>
+      </Options>
+    </Linking>
+  </CompilerOptions>
+  <Debugging>
+    <Exceptions Count="3">
+      <Item1>
+        <Name Value="EAbort"/>
+      </Item1>
+      <Item2>
+        <Name Value="ECodetoolError"/>
+      </Item2>
+      <Item3>
+        <Name Value="EFOpenError"/>
+      </Item3>
+    </Exceptions>
+  </Debugging>
+</CONFIG>
