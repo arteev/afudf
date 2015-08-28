@@ -13,7 +13,7 @@
       <MajorVersionNr Value="1"/>
       <MinorVersionNr Value="5"/>
       <RevisionNr Value="5"/>
-      <BuildNr Value="186"/>
+      <BuildNr Value="187"/>
       <StringTable Comments="AFUDF Library" FileDescription="AFUDF Library" InternalName="afucrypt" LegalCopyright="OAO Pharmacy" ProductName="AFUDF Library" ProductVersion="1.5"/>
     </VersionInfo>
     <BuildModes Count="4" Active="win64">
@@ -137,7 +137,8 @@
         <Filename Value="afucrypt.lpr"/>
         <IsPartOfProject Value="True"/>
         <IsVisibleTab Value="True"/>
-        <CursorPos X="59" Y="14"/>
+        <TopLine Value="11"/>
+        <CursorPos X="38" Y="25"/>
         <UsageCount Value="60"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -330,7 +331,7 @@
         <UsageCount Value="10"/>
       </Unit30>
     </Units>
-    <JumpHistory Count="5" HistoryIndex="4">
+    <JumpHistory Count="6" HistoryIndex="5">
       <Position1>
         <Filename Value="afucrypt.lpr"/>
         <Caret Line="30" Column="39" TopLine="6"/>
@@ -351,6 +352,10 @@
         <Filename Value="afucrypt.lpr"/>
         <Caret Line="12" Column="73"/>
       </Position5>
+      <Position6>
+        <Filename Value="afucrypt.lpr"/>
+        <Caret Line="14" Column="59"/>
+      </Position6>
     </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>

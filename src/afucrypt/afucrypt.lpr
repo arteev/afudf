@@ -22,7 +22,7 @@ uses
   {$EndIf}
   sysutils,
   uafcrypt in 'uafcrypt.pas',
-  uafudfs in '../common/uafudfs.pas', ulogterm,
+  uafudfs in '../common/uafudfs.pas',
   ufbblob in '../cmnUnits/ufbblob.pas';
 
 
