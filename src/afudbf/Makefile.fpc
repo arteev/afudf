@@ -21,7 +21,8 @@ units=$(AFUDFMODULE)
 files=$(wildcard *.bak)
 
 [compiler]
-options= $(LAZARUS_LIBPATHS)   -XX -Xs CX -O2 $(USEPTRINT)
+options= $(LAZARUS_LIBPATHS)   -XX -Xs CX -O2 $(USEPTRINT) \
+	$(OUTPUTLIB)
 
 unitdir=.  $(LAZDIR)/lcl/units/$(CPU_TARGET)-$(OS_TARGET) \
            $(LAZDIR)/lcl/units/$(CPU_TARGET)-$(OS_TARGET)/$(LCL_PLATFORM) \
@@ -43,10 +44,17 @@ ifdef UsePtrInt
 USEPTRINT = -dUsePtrInt
 endif
 
+ifeq ($(OS_TARGET),linux)
+OUTPUTLIB=-o$(AFUDFMODULE)$(SHAREDLIBEXT)
+else
+OUTPUTLIB=
+endif
+
 # LCL Platform
 ifndef LCL_PLATFORM
 LCL_PLATFORM=nogui
 endif
+
 ifneq ($(findstring $(OS_SOURCE),win32 win64),)
 AFUDFVERSION=$(shell ..\..\tools\get_version.bat)
 else

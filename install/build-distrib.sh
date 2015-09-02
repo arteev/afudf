@@ -1,39 +1,35 @@
-#!/bin/sh
-#buildzips.sh
-# Создание архивов для
+#!/bin/bash
 
-# 1. win32 : dll, iconv,help, sql (полностью)
-# *2. win32 : dll, iconv
-# *3. Win32 : Sql (регистрация)
-# *4. Help
-# 5. Linux : so,help,sql (полностью)
-# *6. Linux : so
-# *7. Linux : Sql (регистрация)
+version=`cat version | grep version | cut -c9-`.`cat version | grep build | cut -c7-`
+#`cat version | grep release | cut -c9-`
 
-  version=`cat version | grep version | cut -c9-`.`cat version | grep build | cut -c7-`.`cat version | grep release | cut -c9-`
-  flddest=../output
-  product=af-udf
+
+flddest=../output
+product=af-udf
   
-  flddesthelp=$flddest/$product-$version/help
+flddesthelp=$flddest/$product-$version/help
   
-  fldbin=../build
-  fldSQLReg=../sql/reg
+fldbin=../build
+fldSQLReg=../sql/reg
   
-  fldSQL=../sql/reg
-  fldResource=../resource
-  fldHelp=../help
+fldSQL=../sql/reg
+fldResource=../resource
+fldHelp=../help
   
-  srcHelp=(man-af-udf.pdf authors.txt install.txt bugs)
-  
-  
+srcHelp=(authors.txt install.txt)
   
   
-  platform=(linux-i386 linux-x86_64 win32-i386)
-  cpu_target=(i386 x86_64 i386)
-  os_target=(linux linux win32)
-  pl_bin_ext=(so so dll)
-  pl_enc=(UTF-8 UTF-8 CP1251)
   
+  
+  platform=(linux-i386 linux-x86_64)
+  
+  cpu_target=(i386 x86_64)
+  os_target=(linux linux)
+  pl_bin_ext=(so so)
+  pl_enc=(UTF-8 UTF-8)
+  
+  ppc=($FPCDIR/ppcross386 $FPCDIR/ppcx64)
+      
   
   if [ ! -d $flddest ] 
   then
@@ -71,7 +67,7 @@
      
      echo -n "Make  [$curplat]:  CPU:${cpu_target[iplat]} OS:${os_target[iplat]} " 
      
-     make CPU_TARGET=${cpu_target[iplat]} OS_TARGET=${os_target[iplat]} --directory=`readlink -f ..` all
+     make CPU_TARGET=${cpu_target[iplat]} OS_TARGET=${os_target[iplat]} --directory=`readlink -f ..`  PP=${ppc[iplat]}  all
 
      echo "OK!"
      
@@ -149,18 +145,5 @@
    rpmbuild -bb afudf.spec --target i386 --quiet
    echo -n "Building rpm: "
    rpmbuild -bb afudf.spec --target x86_64 --quiet
-   
-   
-   echo  "Building installer for windows: "
-   # wine Inno Setup
-   echo -n Wine Building Installator Windows Inno Setup...
-   echo \'$version\' > versioniss   
-   echo  "OutputBaseFilename=af-udf-win32-$version" > outiss
-   echo  "OutputDir=output\\$product-$version\\win32-i386" >> outiss
 
-
-   env WINEPREFIX="/home/inferno/.wine" wine "c:\Program Files (x86)\Inno Setup 5\ISCC.exe" afudf.iss 
-   #2&> /dev/null
-   
-   
    echo done.

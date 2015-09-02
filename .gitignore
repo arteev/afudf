@@ -14,3 +14,5 @@ src/*/backup
 resource/win32-i386/*
 resource/win64-x86_64/*
 todo.txt
+Makefile
+src/*/Makefile

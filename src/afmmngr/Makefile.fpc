@@ -12,7 +12,7 @@ version=$(AFUDFVERSION)
 programs=$(AFUDFMODULE)
 
 [require]
-#packages=rtl
+
 
 [clean]
 units=$(AFUDFMODULE)
@@ -37,6 +37,14 @@ targetdir=$(BUILDDIR)
 AFUDFMODULE=afmmngr
 BUILDDIR=../../build/$(OS_TARGET)-$(CPU_TARGET)
 LIBDIR=../../build/lib/$(CPU_TARGET)-$(OS_TARGET)
+
+
+ifeq ($(OS_TARGET),linux)
+OUTPUTLIB=-o$(AFUDFMODULE)$(SHAREDLIBEXT)
+else
+OUTPUTLIB=
+endif
+
 
 # LCL Platform
 ifndef LCL_PLATFORM
