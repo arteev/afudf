@@ -78,6 +78,11 @@ implementation
 {$IFDEF WINDOWS}
   uses Windows;
 {$ENDIF}
+
+{ Shared object registry from afmmngr (validates handles before dereference) }
+procedure RegisterUdfObj(Obj: Pointer); cdecl; external 'afmmngr' name 'RegisterUdfObj';
+procedure UnregisterUdfObj(Obj: Pointer); cdecl; external 'afmmngr' name 'UnregisterUdfObj';
+function FindUdfObj(Handle: Pointer): Pointer; cdecl; external 'afmmngr' name 'FindUdfObj';
 {not used?}
 (*procedure _FreeObj(Handle:PtrUdf);
 
@@ -132,7 +137,8 @@ end;
 function HandleToAfObj(Handle: PtrUdf;AType:TTypeAFObj): TAFObj;
 begin
   result := TAFObj.FindObj(Handle,AType);
-  result.ClearError;
+  if Assigned(result) then
+    result.ClearError;
 end;
 
 
@@ -146,6 +152,8 @@ end;
 
 constructor TAFObj.Create(AObj: TObject);
 begin
+  inherited Create;
+  RegisterUdfObj(Self);
   FTypeAFObj := taoObject;
   FObj := AObj;
   ClearError;
@@ -153,6 +161,8 @@ end;
 
 constructor TAFObj.Create(AObj:Pointer;SizeMem:Cardinal);
 begin
+  inherited Create;
+  RegisterUdfObj(Self);
   FTypeAFObj := taoMem;
   PFObj := AObj;
   FSizeMem := SizeMem;
@@ -161,6 +171,7 @@ end;
 
 destructor TAFObj.Destroy;
 begin
+  UnregisterUdfObj(Self);
   case FTypeAFObj of
    taoObject: if FObj<>nil then
                  FObj.Free;
@@ -173,13 +184,10 @@ end;
 class function TAFObj.FindObj(AHandle: PtrUdf;
   ATypeAFObj: TTypeAFObj): TAFObj;
 begin
-  result := nil;
-  try
-    Result := TAFObj({%H-}Pointer(AHandle));
-    if (taoUnknow<>ATypeAFObj) and (Result.TypeAFObj <> ATypeAFObj) then
-      result := nil;
-  except
-  end;
+  { The registry lookup never dereferences an invalid handle }
+  Result := TAFObj(FindUdfObj({%H-}Pointer(AHandle)));
+  if (Result<>nil) and (taoUnknow<>ATypeAFObj) and (Result.TypeAFObj <> ATypeAFObj) then
+    result := nil;
 end;
 
 procedure TAFObj.NilMemory;

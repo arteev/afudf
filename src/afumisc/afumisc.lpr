@@ -17,6 +17,7 @@ library afumisc;
 {$mode objfpc}{$H+}
 
 uses
+  {$IFDEF UNIX}cthreads,{$ENDIF}
   sharememudf,
   {$IfDef DEBUG}
   heaptrc,
@@ -34,4 +35,3 @@ begin
   SetHeapTraceOutput(GetEnvironmentVariable('TEMP')+DirectorySeparator+'afudf.'+{$I %FILE%}+'.heap.trc');
   {$EndIf}
 end.
-

@@ -23,7 +23,7 @@ uses dbf,dbf_dbffile, uafudfs, ib_util;
 
 {Creates an object to work with DBF}
 function CreateDBF (FileName: PChar; var AnsiOrOem: Integer; var Mode: integer;
-                   var Share: integer; var Overwrite: integer): PtrUDF; cdecl;
+                   var Share: integer; var Overwrite: integer): Int64; cdecl;
 
 {Creates a DBF file on disk}
 function CreateTableDBF (var Handle: PtrUDF): integer; cdecl;
@@ -145,6 +145,8 @@ begin
   try
     afobj := HandleToAfObj(Handle);
 
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     TDbfWrap(afobj.Obj).ADbf.TableLevel:= FormatDBF;
     Result := 1;
   except
@@ -161,6 +163,8 @@ begin
   try
     afobj := HandleToAfObj(Handle);
 
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     result := TDbfWrap(afobj.Obj).ADbf.TableLevel;
   except
     on e:Exception do
@@ -182,7 +186,7 @@ end;
 {                                                                  }
 {******************************************************************}
 function CreateDBF(FileName:PChar;var AnsiOrOem:Integer; var Mode:integer;
-                   var Share:integer;var Overwrite:integer):PtrUDF;cdecl;
+                   var Share:integer;var Overwrite:integer):Int64;cdecl;
 var
     adbfwp:TDbfWrap;
 begin
@@ -203,7 +207,7 @@ begin
     if Assigned(adbfwp) then adbfwp.Free;
     exit;
   end;
-  result := TAFObj.Create(adbfwp).Handle;
+  result := Int64(TAFObj.Create(adbfwp).Handle);
 end;
 
 Type
@@ -215,6 +219,8 @@ begin
   result := DefaultResult;
   try
     afobj := HandleToAfObj(Handle);
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     result := func(afobj);
   except
     on e:Exception do
@@ -421,6 +427,8 @@ begin
    result := 0;
   try
     afobj := HandleToAfObj(Handle);
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     TDbfWrap(afobj.Obj).ADbf.RecNo :=  NewRecNO;
     Result := TDbfWrap(afobj.Obj).ADbf.RecNo;
   except
@@ -436,6 +444,8 @@ begin
   try
     afobj := HandleToAfObj(Handle);
 
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
      if TDbfWrap(afobj.Obj).ADbf.FindField(FieldName)<>nil then
       result := 1;
   except
@@ -451,6 +461,8 @@ begin
   result := 0;
   try
     afobj := HandleToAfObj(Handle);
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     if Value= nil then
       TDbfWrap(afobj.Obj).ADbf.FieldByName(FieldName).Clear
     else
@@ -474,6 +486,8 @@ begin
   try
     afobj := HandleToAfObj(Handle);
 
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     f:=TDbfWrap(afobj.Obj).ADbf.Fields[index];
     if f<>nil then
     begin
@@ -497,6 +511,8 @@ var afobj:TAFObj;
 begin
   try
     afobj := HandleToAfObj(Handle);
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     with  TDbfWrap(afobj.Obj) do
     begin
       s := Convert(ADbf.FieldByName(FieldName).AsString,False);
@@ -518,6 +534,8 @@ begin
   result := -1;
   try
     afobj := HandleToAfObj(Handle);
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     Result := Integer(TDbfWrap(afobj.Obj).ADbf.FieldByName(FieldName).IsNull);
   except
     on e:Exception do
@@ -532,6 +550,8 @@ begin
   result := 0;
   try
     afobj := HandleToAfObj(Handle);
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     if TDbfWrap(afobj.Obj).ADbf.FieldDefs.IndexOf(FieldName)<>-1 then
      raise Exception.CreateFmt('Field %s is exists.',[FieldName]);
 

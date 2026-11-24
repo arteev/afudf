@@ -20,6 +20,7 @@ library afutextfile;
 {$mode objfpc}{$H+}
 
 uses
+  {$IFDEF UNIX}cthreads,{$ENDIF}
   smudfstatic,
   {$IfDef DEBUG}
   heaptrc,
@@ -60,4 +61,3 @@ begin
   DefaultFormatSettings.LongDateFormat :=  'yyyy/mm/dd';
   DefaultFormatSettings.DateSeparator	:= '-';
 end.
-

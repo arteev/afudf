@@ -17,6 +17,7 @@ library afuxml;
 {$mode objfpc}
 
 uses
+  {$IFDEF UNIX}cthreads,{$ENDIF}
   smudfstatic,
   {$IfDef DEBUG}heaptrc,{$EndIf}
   uafxml,
@@ -76,4 +77,3 @@ begin
   SetHeapTraceOutput(GetEnvironmentVariable('TEMP')+DirectorySeparator+'afudf.'+{$I %FILE%}+'.heap.trc');
   {$EndIf}
 end.
-

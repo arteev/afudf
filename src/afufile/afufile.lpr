@@ -17,6 +17,7 @@ library afufile;
 
 {$MODE objfpc}
 uses
+  {$IFDEF UNIX}cthreads,{$ENDIF}
   smudfstatic,
   {$IfDef DEBUG}
   heaptrc,
