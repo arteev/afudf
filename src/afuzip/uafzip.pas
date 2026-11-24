@@ -23,7 +23,7 @@ Uses
   ufbblob,zipper,uafudfs;
 
 { Creates an object for packing }
-function CreateZIP: PtrUdf; cdecl;
+function CreateZIP: Int64; cdecl;
 
 { Specify the file for packing / unpacking }
 function SetArhiveFileZIP (var Handle: PtrUdf; FileName: Pchar): integer; cdecl;
@@ -38,7 +38,7 @@ function CompressZIP (var Handle: PtrUdf): Integer; cdecl;
 function ClearSpecZIP (var Handle: PtrUdf): integer; cdecl;
 
 { Creates an object for packing }
-function CreateUnZIP: PtrUdf; cdecl;
+function CreateUnZIP: Int64; cdecl;
 
 { Specify the destination folder for unpacking }
 function SetExtractDirZIP (var Handle: PtrUdf; FolderName: Pchar): integer; cdecl;
@@ -51,7 +51,7 @@ implementation
 uses
   SysUtils,Classes;
 
-function CreateZIP:PtrUdf;cdecl;
+function CreateZIP:Int64;cdecl;
 var
     Zip  : TZipper;
 begin
@@ -62,7 +62,7 @@ begin
     if Assigned(Zip) then Zip.Free;
     exit;
   end;
-  result := TAFObj.Create(Zip).Handle;
+  result := Int64(TAFObj.Create(Zip).Handle);
 end;
 
 function SetArhiveFileZIP(var Handle:PtrUdf;FileName:Pchar):integer;cdecl;
@@ -71,6 +71,8 @@ begin
   result := 0;
   try
     afobj :=HandleToAfObj(Handle);
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     if (afobj.Obj is TZipper) then
     begin
       if FileExists(FileName) then
@@ -92,6 +94,8 @@ begin
   result := 0;
   try
     afobj :=HandleToAfObj(Handle);
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     if (afobj.Obj is TZipper) then
     begin
       TZipper(afobj.Obj).Entries.AddFileEntry(FileName,ExtractFileName(FileName));
@@ -111,6 +115,8 @@ begin
   result := 0;
   try
     afobj :=HandleToAfObj(Handle);
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     TZipper(afobj.Obj).ZipAllFiles;
     result := 1;
   except
@@ -126,6 +132,8 @@ begin
   result := 0;
   try
     afobj :=HandleToAfObj(Handle);
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     if (afobj.Obj is TZipper) then
       TZipper(afobj.Obj).Entries.Clear
     else
@@ -137,7 +145,7 @@ begin
   end;
 end;
 
-function CreateUnZIP:PtrUdf;cdecl;
+function CreateUnZIP:Int64;cdecl;
 var
     Zip :TUnZipper;
 begin
@@ -148,7 +156,7 @@ begin
     if Assigned(Zip) then Zip.Free;
     exit;
   end;
-  result := TAFObj.Create(Zip).Handle;
+  result := Int64(TAFObj.Create(Zip).Handle);
 end;
 
 
@@ -158,6 +166,8 @@ begin
   result := 0;
   try
     afobj :=HandleToAfObj(Handle);
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     TUnZipper(afobj.Obj).OutputPath := FolderName;
     result := 1;
   except
@@ -172,6 +182,8 @@ begin
   result := 0;
   try
     afobj :=HandleToAfObj(Handle);
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     TUnZipper(afobj.Obj).UnZipAllFiles;
     result := 1;
   except

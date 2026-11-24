@@ -56,16 +56,16 @@ Type
  (*** Document XML ***)
 
 {Creates an XML (empty)}
-function CreateXmlDocument: PtrUdf; cdecl;
+function CreateXmlDocument: Int64; cdecl;
 
 {Creates an XML object from a string by converting from the encoding specified in XML}
-function CreateXmlDocFromString (S: PChar): PtrUdf; cdecl;
+function CreateXmlDocFromString (S: PChar): Int64; cdecl;
 
 {Creates XML object stored in BLOB encoded in UTF-8}
-function CreateXmlDocFromBLOB (var BLOB: TFBBlob): PtrUdf; cdecl;
+function CreateXmlDocFromBLOB (var BLOB: TFBBlob): Int64; cdecl;
 
 {Produces an XML file in UTF-8}
-function CreateXmlDocFromFile (FileName: PChar): PtrUdf; cdecl;
+function CreateXmlDocFromFile (FileName: PChar): Int64; cdecl;
 
 {Setting version xml file}
 function XMLSetVersion (var Handle: PtrUdf; Ver: PChar): integer; cdecl;
@@ -100,7 +100,7 @@ function XmlToFile (var Handle: PtrUdf; filename: PChar): integer; cdecl;
 (*** Tags ***)
 {Creates a tag to tag Parent (Index - not used TagName, Value encoding Encoding)}
 function XMLAddNode (var Handle: PtrUdf;var Parent: PtrUdf; TagName: PChar;
-  var Index: integer): PtrUdf; cdecl;
+  var Index: integer): Int64; cdecl;
 
 {Set the text node of encoding Encoding}
 function XMLNodeSetText (var Handle: PtrUdf; var Node: PtrUdf; Value: PChar): integer; cdecl;
@@ -119,10 +119,10 @@ function XmlNodeCountNodes (var Handle: PtrUdf; var Node: PtrUdf): integer; cdec
 
 {Returns the child node for Node at index Index}
 function XmlNodeByIndex (var Handle: PtrUdf; var Node: PtrUdf;
-  var Index: integer): PtrUdf; cdecl;
+  var Index: integer): Int64; cdecl;
 
 {Search node name in Node}
-function XmlNodeByName (var Handle: PtrUdf; var Node: PtrUdf; NameNode: PChar): PtrUdf; cdecl;
+function XmlNodeByName (var Handle: PtrUdf; var Node: PtrUdf; NameNode: PChar): Int64; cdecl;
 
 {Returns the text node for simple tag and attribute for an XML tag to tag}
 procedure XMLTextNodeBlob (var Handle: PtrUdf; var Node: PtrUdf; var Blob: TFBBlob); cdecl;
@@ -135,7 +135,7 @@ procedure XMLXmlNodeBlob (var Handle: PtrUdf; var Node: PtrUdf; var Blob: TFBBlo
 {Creates a tag attribute Parent (Index - not used AttName, Value encoding Encoding)}
 function XMLAddAtt (var Handle: PtrUdf;
   var Parent: PtrUdf; AttName: PChar; Value: PChar;
-  var {%H-}Index: integer): PtrUdf; cdecl;
+  var {%H-}Index: integer): Int64; cdecl;
 
 {Returns whether the node attributes}
 function XmlNodeHasAttribute (var Handle: PtrUdf;
@@ -146,11 +146,11 @@ function XmlNodeCountAtt (var Handle: PtrUdf; var Node: PtrUdf): integer; cdecl;
 
 {Gets attribute by index}
 function XmlNodeAttByIndex (var Handle: PtrUdf; var Node: PtrUdf;
-  var Index: integer): PtrUdf; cdecl;
+  var Index: integer): Int64; cdecl;
 
 {Returns the attribute name encoding Encoding}
 function XmlNodeAttByName (var Handle: PtrUdf;
-  var Node: PtrUdf; NameAtt: PChar): PtrUdf; cdecl;
+  var Node: PtrUdf; NameAtt: PChar): Int64; cdecl;
 
 {Returns the text attribute Value name attribute NameAtt encoding Encoding}
 function XmlNodeAttByNameVal (var Handle: PtrUdf;
@@ -168,7 +168,7 @@ function XmlNodeAttByNameVal (var Handle: PtrUdf;
   Note: Do not use Free !!!
 }
 function XmlXPathEval (var Handle: PtrUdf; AExpressionString: PChar;
-  var AContextNode: PtrUdf): PtrUdf; cdecl;
+  var AContextNode: PtrUdf): Int64; cdecl;
 {
   XmlXPathEvalValueStr: Evaluates an expression AExpressionString xpath
                 Handle: A pointer to the XML object
@@ -195,7 +195,7 @@ function XmlXPathEvalValueNum (var Handle: PtrUdf; AExpressionString: PChar;
                 Index: The index of starting from scratch
                 Result: Returns a pointer to TXMLNode
 }
-function XmlXPathNodeSetItem (var Handle: PtrUdf; var HandleNodeSet: PtrUdf; var Index: integer): PtrUdf; cdecl;
+function XmlXPathNodeSetItem (var Handle: PtrUdf; var HandleNodeSet: PtrUdf; var Index: integer): Int64; cdecl;
 
 {
   XmlXPathNodeSetCount: The number in the set when prompted XmlXPathEval
@@ -260,10 +260,12 @@ function XmlXPathEvalHelper (Handle: PtrUdf; AExpressionString: PChar;
 implementation
 
 uses XMLWrite;
+
+procedure RegisterUdfObj(Obj: Pointer); cdecl; external 'afmmngr' name 'RegisterUdfObj';
 const
   DOMDefaultEncode = 'utf-8';
 
-function CreateXmlDocument: PtrUdf; cdecl;
+function CreateXmlDocument: Int64; cdecl;
 var
   afobj:  TAFObj;
   XmlDoc: TUDFXMLDocument;
@@ -277,10 +279,10 @@ begin
     exit;
   end;
   afobj  := TAFObj.Create(XmlDoc);
-  Result := afobj.Handle;
+  Result := Int64(afobj.Handle);
 end;
 
-function CreateXmlDocFromString(S: PChar): PtrUdf; cdecl;
+function CreateXmlDocFromString(S: PChar): Int64; cdecl;
 var
     bs:TStringStream;
     DocOut: TXMLDocument;
@@ -292,7 +294,7 @@ begin
     ReadXMLFile(DocOut,bs);
     XmlDoc := TUDFXMLDocument.Create(false);
     XmlDoc.Document := DocOut;
-    Result := TAFObj.Create(XmlDoc).Handle;
+    Result := Int64(TAFObj.Create(XmlDoc).Handle);
     except
       result := 0;
     end;
@@ -301,7 +303,7 @@ begin
   end;
 end;
 
-function CreateXmlDocFromBLOB(var BLOB: TFBBlob):PtrUdf;cdecl;
+function CreateXmlDocFromBLOB(var BLOB: TFBBlob):Int64;cdecl;
 var
     bs:TFBBlobStream;
     DocOut: TXMLDocument;
@@ -313,7 +315,7 @@ begin
     ReadXMLFile(DocOut,bs);
     XmlDoc := TUDFXMLDocument.Create(false);
     XmlDoc.Document := DocOut;
-    Result := TAFObj.Create(XmlDoc).Handle;
+    Result := Int64(TAFObj.Create(XmlDoc).Handle);
     except
       result := 0;
     end;
@@ -322,7 +324,7 @@ begin
   end;
 end;
 
-function CreateXmlDocFromFile(FileName:PChar):PtrUdf;cdecl;
+function CreateXmlDocFromFile(FileName:PChar):Int64;cdecl;
 var
     DocOut: TXMLDocument;
     XmlDoc: TUDFXMLDocument;
@@ -332,7 +334,7 @@ begin
     ReadXMLFile(DocOut,FileName);
     XmlDoc := TUDFXMLDocument.Create(false);
     XmlDoc.Document := DocOut;
-    Result := TAFObj.Create(XmlDoc).Handle;
+    Result := Int64(TAFObj.Create(XmlDoc).Handle);
   except
     exit(0);
   end;
@@ -345,6 +347,8 @@ begin
   Result := 0;
   try
     afobj := HandleToAfObj(Handle);
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     TUDFXMLDocument(afobj.Obj).Document.XMLVersion := Ver;
     Result := 1;
   except
@@ -361,6 +365,8 @@ begin
   Result := 0;
   try
     afobj := HandleToAfObj(Handle);
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     TUDFXMLDocument(afobj.Obj).InputOutputEncoding := Encoding;
     Result := 1;
   except
@@ -378,6 +384,8 @@ begin
   Result := 0;
   try
     afobj := HandleToAfObj(Handle);
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     TUDFXMLDocument(afobj.Obj).Encoding := Encoding;
     Result := 1;
   except
@@ -390,7 +398,7 @@ end;
 
 
 function XMLAddNode(var Handle: PtrUdf;
-  var Parent: PtrUdf; TagName: PChar; var Index: integer): PtrUdf; cdecl;
+  var Parent: PtrUdf; TagName: PChar; var Index: integer): Int64; cdecl;
 var
   afobj:      TAFObj;
   XmlParent:  TDOMElement;
@@ -401,6 +409,8 @@ begin
   Result := 0;
   try
     afobj := HandleToAfObj(Handle);
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     XmlParent := TDOMElement({%H-}Pointer( PtrUdf(Parent)));
     XmlTagName := inConvStrToDOM(inGetEncoding(afobj.Obj), TagName);
     if XmlParent = nil{Parent=0} then
@@ -426,7 +436,7 @@ begin
       end;
 
     end;
-    Result := ObjToHandle(XmlNode);
+    Result := Int64(ObjToHandle(XmlNode));
   except
     on e: Exception do
       if Assigned(afobj) then
@@ -441,6 +451,8 @@ var
 begin
   try
     afobj := HandleToAfObj(Handle);
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     sXml := UTF8Encode(TUDFXMLDocument(afobj.Obj).Encoding);
     if sXml = '' then sXml := 'utf-8';
     Result := ib_util_malloc(Length(sXML)+1);
@@ -463,6 +475,8 @@ var
 begin
   try
     afobj := HandleToAfObj(Handle);
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     sXMLDom := inGetXML(TUDFXMLDocument(afobj.Obj));
     if isNeedConvert(afobj.Obj) then
     begin
@@ -496,6 +510,8 @@ var
 begin
   try
     afobj := HandleToAfObj(Handle);
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     sXMLDom := inGetXML(TUDFXMLDocument(afobj.Obj));
     if isNeedConvert(afobj.Obj) then
     with TUDFXMLDocument(afobj.Obj) do
@@ -530,6 +546,8 @@ begin
   Result := 0;
   try
     afobj := HandleToAfObj(Handle);
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     XmlNode := HandleToObj(Node) as TDOMNode;
     if XmlNode <> nil then
     begin
@@ -552,8 +570,11 @@ var
   XmlNode: TDOMNode;
   s: String;
 begin
+  Result := nil;
   try
     afobj := HandleToAfObj(Handle);
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     XmlNode := HandleToObj(Node) as TDOMNode;
     if XmlNode = nil then
       raise Exception.Create('Node not found.');
@@ -579,6 +600,8 @@ begin
   try
     afobj := HandleToAfObj(Handle);
 
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     sXMLDom := inGetXML(TUDFXMLDocument(afobj.Obj));
     if isNeedConvert(afobj.Obj) then
     with TUDFXMLDocument(afobj.Obj) do
@@ -615,6 +638,8 @@ var
 begin
   try
     afobj := HandleToAfObj(Handle);
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     XmlNode := HandleToObj(Node) as TDOMNode;
     if XmlNode = nil then
       raise Exception.Create('Node not found.');
@@ -640,6 +665,8 @@ var
 begin
   try
     afobj := HandleToAfObj(Handle);
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     XmlNode := HandleToObj(Node) as TDOMNode;
     if XmlNode = nil then
       raise Exception.Create('Node not found.');
@@ -670,6 +697,8 @@ begin
   try
     afobj := HandleToAfObj(Handle);
 
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     XmlNode := HandleToObj(Node) as TDOMNode;
     if (XmlNode <> nil) then
       if XmlNode.HasChildNodes then result := 1;
@@ -689,6 +718,8 @@ begin
   Result := 0;
   try
     afobj := HandleToAfObj(Handle);
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     XmlNode := HandleToObj(Node) as TDOMNode;
     if XmlNode <> nil then
       Result := integer(XmlNode.Attributes.GetNamedItem(Attribute) <> nil)
@@ -709,6 +740,8 @@ begin
   try
     afobj := HandleToAfObj(Handle);
 
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     XmlNode := HandleToObj(Node) as TDOMNode;
 
     if XmlNode <> nil then
@@ -724,7 +757,7 @@ begin
 end;
 
 function XmlNodeByIndex(var Handle: PtrUdf; var Node: PtrUdf;
-  var Index: integer): PtrUdf; cdecl;
+  var Index: integer): Int64; cdecl;
 var
   afobj:     TAFObj;
   XmlParent: TDOMNode;
@@ -734,6 +767,8 @@ begin
   Result := 0;
   try
     afobj := HandleToAfObj(Handle);
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     XmlParent := HandleToObj(Node) as TDOMNode;
     try
       if XmlParent = nil then
@@ -745,7 +780,7 @@ begin
     end;
     if XmlFind = nil then
       raise Exception.Create('Node #' + IntToStr(Index) + ' not found.');
-    Result := ObjToHandle(XmlFind);
+    Result := Int64(ObjToHandle(XmlFind));
   except
     on e: Exception do
       if Assigned(afobj) then
@@ -753,7 +788,7 @@ begin
   end;
 end;
 
-function XmlNodeByName(var Handle: PtrUdf; var Node: PtrUdf; NameNode: PChar): PtrUdf; cdecl;
+function XmlNodeByName(var Handle: PtrUdf; var Node: PtrUdf; NameNode: PChar): Int64; cdecl;
 var
   afobj:     TAFObj;
   XmlParent: TDOMNode;
@@ -763,6 +798,8 @@ begin
   Result := 0;
   try
     afobj := HandleToAfObj(Handle);
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     XmlParent := TDOMNode(HandleToObj(Node));
     sNameNode := inConvStrToDOM(inGetEncoding(afobj.Obj), NameNode);
     try
@@ -772,7 +809,7 @@ begin
         XmlFind := XmlParent.FindNode(sNameNode);
       if XmlFind = nil then
         raise Exception.Create('Node "' + NameNode + '" not found.');
-      Result := ObjToHandle(XmlFind);
+      Result := Int64(ObjToHandle(XmlFind));
     finally
     end;
   except
@@ -791,6 +828,8 @@ begin
   try
     afobj := HandleToAfObj(Handle);
 
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     XmlNode := HandleToObj(Node) as TDOMNode;
     if XmlNode = nil then
       raise Exception.Create('Node not found.');
@@ -803,7 +842,7 @@ begin
 end;
 
 function XmlNodeAttByIndex(var Handle: PtrUdf; var Node: PtrUdf;
-  var Index: integer): PtrUdf; cdecl;
+  var Index: integer): Int64; cdecl;
 var
   afobj:     TAFObj;
   XmlParent: TDOMNode;
@@ -812,13 +851,15 @@ begin
   Result := 0;
   try
     afobj := HandleToAfObj(Handle);
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     XmlParent := HandleToObj(Node) as TDOMNode;
     if XmlParent <> nil then
     begin
       XmlFind := XmlParent.Attributes.Item[Index];
       if XmlFind = nil then
         raise Exception.Create('Node #' + IntToStr(Index) + ' not found.');
-      Result := ObjToHandle(XmlFind);
+      Result := Int64(ObjToHandle(XmlFind));
     end
     else
       raise Exception.Create('Node not found.');
@@ -830,7 +871,7 @@ begin
 end;
 
 function XmlNodeAttByName(var Handle: PtrUdf;
-  var Node: PtrUdf; NameAtt: PChar): PtrUdf; cdecl;
+  var Node: PtrUdf; NameAtt: PChar): Int64; cdecl;
 var
   afobj:     TAFObj;
   XmlParent: TDOMNode;
@@ -840,6 +881,8 @@ begin
   Result := 0;
   try
     afobj := HandleToAfObj(Handle);
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     XmlParent := HandleToObj(Node) as TDOMNode;
     sNameNode := inConvStrToDOM(inGetEncoding(afobj.Obj), NameAtt);
     if XmlParent = nil then
@@ -850,7 +893,7 @@ begin
         begin
           raise Exception.Create('Node "' + NameAtt + '" not found.');
         End;
-        Result := ObjToHandle(XmlFind);
+        Result := Int64(ObjToHandle(XmlFind));
       finally
         //SetLength(sNameNode,0);
       end;
@@ -863,7 +906,7 @@ end;
 
 function XMLAddAtt(var Handle: PtrUdf;
   var Parent: PtrUdf; AttName: PChar; Value: PChar;
-  var Index: integer): PtrUdf; cdecl;
+  var Index: integer): Int64; cdecl;
 var
   afobj:     TAFObj;
   XmlParent: TDOMElement;
@@ -874,6 +917,8 @@ begin
   Result := 0;
   try
     afobj := HandleToAfObj(Handle);
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     if HandleToObj(Parent) is TUDFXMLDocument then
       XmlParent := TUDFXMLDocument(afobj.Obj).Document.DocumentElement
     else
@@ -890,7 +935,7 @@ begin
     else
       raise Exception.Create('Parent Node not found.');
 
-    Result := ObjToHandle(XmlNode);
+    Result := Int64(ObjToHandle(XmlNode));
   except
     on e: Exception do
       if Assigned(afobj) then
@@ -910,6 +955,8 @@ var
 begin
   try
     afobj := HandleToAfObj(Handle);
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     if HandleToObj(Node) is TUDFXMLDocument then
       XmlParent := TUDFXMLDocument(afobj.Obj).Document.DocumentElement
     else
@@ -937,7 +984,7 @@ begin
 end;
 
 function XmlXPathEval(var Handle: PtrUdf; AExpressionString: PChar;
-  var AContextNode: PtrUdf): PtrUdf; cdecl;
+  var AContextNode: PtrUdf): Int64; cdecl;
 var
   pv: TXPathVariable;
 begin
@@ -945,7 +992,10 @@ begin
   if pv=nil then
     Result := 0
   else
-    Result := ObjToHandle(pv);
+  begin
+    RegisterUdfObj(pv);
+    Result := Int64(ObjToHandle(pv));
+  end;
   // Must be later --> FreeAFObject(TXPathVariable)
 end;
 
@@ -960,6 +1010,8 @@ begin
     pv := XmlXPathEvalHelper(handle,AExpressionString,AContextNode);
     try
       if pv=nil then exit(nil);
+      if TAFObj.FindObj(Handle, taoObject)=nil then
+        raise Exception.Create('Invalid object handle.');
       udfxml := TUDFXMLDocument(TAFObj.FindObj(Handle, taoObject).Obj);
       s := inConvDOMToStr(inGetEncoding(udfxml),pv.AsText);
       Result := ib_util_malloc(Length(s)+1);
@@ -982,6 +1034,8 @@ var
 begin
   try
     afobj := HandleToAfObj(Handle);
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     if AContextNode=0 then
       Exception.Create('XmlXPathEval: ContextNode must be set');
     obj := HandleToObj(AContextNode);
@@ -1022,7 +1076,7 @@ begin
 end;
 
 function XmlXPathNodeSetItem(var Handle:PtrUdf; var HandleNodeSet: PtrUdf; var Index: integer
-  ): PtrUdf; cdecl;
+  ): Int64; cdecl;
 var
   afobj: TAFObj;
   ns: TNodeSet;
@@ -1031,6 +1085,8 @@ begin
   try
     result := 0;
     afobj := HandleToAfObj(Handle);
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     if HandleNodeSet=0 then
       Exception.Create('XmlXPathNodeSetItem: ContextNode must be set');
     obj := HandleToObj(HandleNodeSet);
@@ -1042,7 +1098,7 @@ begin
     if (Index<0) or (Index>=ns.Count) then
         raise Exception.CreateFmt('XmlXPathNodeSetItem: Index %d of bounds',[Index]);
     try
-      Result:={%H-}PtrUdf(TXPathNodeSetVariable(obj).Value.Items[Index]);
+      Result:=Int64({%H-}PtrUdf(TXPathNodeSetVariable(obj).Value.Items[Index]));
     finally
       //     --> not: ns.free;
     end;
@@ -1064,6 +1120,8 @@ var
 begin
   try
     afobj := HandleToAfObj(Handle);
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     if HandleNodeSet=0 then
       Exception.Create('XmlXPathEval: ContextNode must be set');
     obj := HandleToObj(HandleNodeSet);
@@ -1094,6 +1152,8 @@ var
 begin
   try
     afobj := HandleToAfObj(Handle);
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     XmlNode := HandleToObj(Node) as TDOMNode;
     if XmlNode <> nil then
     begin
@@ -1201,6 +1261,8 @@ var
 begin
   try
     afobj := HandleToAfObj(Handle);
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     XmlNode := HandleToObj(Node) as TDOMNode;
     if XmlNode = nil then
       raise Exception.Create('Node not found.');

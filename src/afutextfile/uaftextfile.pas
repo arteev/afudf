@@ -5,7 +5,7 @@ interface
 uses
   uafudfs;
 {Creates descriptor to work with a text file FileName}
-function CreateTextFile (FileName: PChar): PtrUdf; cdecl;
+function CreateTextFile (FileName: PChar): Int64; cdecl;
 
 {Opens for reading text file}
 function ResetTextFile (var Handle: PtrUdf): integer; cdecl;
@@ -65,7 +65,7 @@ begin
     raise Exception.Create(IOResultDecode(lastio));
 end;
 
-function CreateTextFile(FileName:PChar):PtrUdf;cdecl;
+function CreateTextFile(FileName:PChar):Int64;cdecl;
 var
   F:^TextFile;
 begin
@@ -77,7 +77,7 @@ begin
     if F<>nil then Dispose(F);
     exit;
   end;
-  result :=TAFObj.Create(F,SizeOf(F^)).Handle;
+  result :=Int64(TAFObj.Create(F,SizeOf(F^)).Handle);
 end;
 
 
@@ -90,6 +90,8 @@ begin
   result := 0;
   try
     afobj := HandleToAfObj(Handle,taoMem);
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     {$I-}
     func(TextFile(afobj.Memory^));
     {$I+}
@@ -159,6 +161,8 @@ begin
   result := 0;
   try
     afobj := HandleToAfObj(Handle,taoMem);
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     {$I-}
     fn(TextFile(afobj.Memory^),S);
     {$I+}
@@ -220,6 +224,8 @@ begin
   result := nil;
   try
     afobj := HandleToAfObj(Handle,taoMem);
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     {$I-}
     ReadLn(TextFile(afobj.Memory^),s);
     {$I+}
@@ -241,6 +247,8 @@ begin
   result := nil;
   try
     afobj := HandleToAfObj(Handle,taoMem);
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     {$I-}
     Read(TextFile(afobj.Memory^),ch);
     {$I+}
@@ -260,6 +268,8 @@ begin
   result := 0;
   try
     afobj := HandleToAfObj(Handle,taoMem);
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     {$I-}
     Read(TextFile(afobj.Memory^),result);
     {$I+}
@@ -277,6 +287,8 @@ begin
   result := 0;
   try
     afobj := HandleToAfObj(Handle,taoMem);
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     {$I-}
     Read(TextFile(afobj.Memory^),Result);
     {$I+}
@@ -294,6 +306,8 @@ begin
   result := 0;
   try
     afobj := HandleToAfObj(Handle,taoMem);
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     {$I-}
     Result := Integer(Eof(TextFile(afobj.Memory^)));
     {$I+}

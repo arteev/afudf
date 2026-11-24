@@ -142,8 +142,8 @@ begin
     FillByte(pRec^,SizeOf(TSearchRec),0);
     if FindFirst(Path,Attr,pRec^)<>0 then
     begin
-      Freemem(pRec,SizeOf(TSearchRec));
       Finalize(pRec^);
+      Freemem(pRec,SizeOf(TSearchRec));
       pRec:=nil;
       exit;
     end;
@@ -158,7 +158,7 @@ begin
   with TAFObj.Create(pRec,SizeOf(TSearchRec)) do
   begin
     ClearError;
-    result := Handle;
+    result := Int64(Handle);
   end;
 end;
 
@@ -167,8 +167,11 @@ var
   afobj:TAFObj;
   pRec :^TSearchRec;
 begin
+  Result := nil;
   try
     afobj := HandleToAfObj(Handle,taoMem);
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     pRec := afobj.Memory;
     Result := ib_util_malloc(Length(pRec^.Name)+1);
     StrPLCopy(Result,Pchar(Utf8ToAnsi(pRec^.Name)),1023);
@@ -184,6 +187,8 @@ var afobj:TAFObj;
 begin
   try
     afobj := HandleToAfObj(Handle,taoMem);
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     pRec := afobj.Memory;
     result := FindNext(pRec^);
   except
@@ -199,6 +204,8 @@ begin
   result := 0;
   try
     afobj := HandleToAfObj(Handle,taoMem);
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     pRec := afobj.Memory;
     result := pRec^.Attr;
   except
@@ -214,6 +221,8 @@ begin
   result := 0;
   try
     afobj := HandleToAfObj(Handle,taoMem);
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     pRec := afobj.Memory;
     result := Integer((pRec^.Attr and Attr)=Attr);
   except
@@ -229,6 +238,8 @@ begin
   result := FalseInt;
   try
     afobj := HandleToAfObj(Handle,taoMem);
+    if afobj=nil then
+      raise Exception.Create('Invalid object handle.');
     pRec :=  afobj.Memory;
     if pRec<>nil then
     begin

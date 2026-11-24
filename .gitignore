@@ -1,4 +1,5 @@
 *.lpi.bak
+.idea
 src/*/*.bak
 build/*
 build/linux-x86_64/*
