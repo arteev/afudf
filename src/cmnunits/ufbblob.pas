@@ -109,8 +109,9 @@ var
   EndOfBLOb : Boolean;
   FreeBufLenX, GotLength : LongInt;
 begin
+  ReadLen := 0;
+  EndOfBLOb := True;
   try
-    ReadLen := 0;
     repeat
       GotLength := 0; { !?! }
 
@@ -225,6 +226,7 @@ begin
     Dec(Count, PutLength);
     Inc(PutAll, PutLength);
   end;
+  Result := PutAll;
 end;
 
 function TFBBlobStream.{%H-}Seek(Offset: Longint; Origin: Word): Longint;

@@ -20,6 +20,7 @@ library afcommon;
 {$MODE Delphi}
 
 uses
+  {$IFDEF UNIX}cthreads,{$ENDIF}
   smudfstatic,
   {$IfDef DEBUG}
   heaptrc,
@@ -35,12 +36,19 @@ const
   sVersion = {$I verafudf.inc};
   sVersionEx = {$I verexafudf.inc};
 
+procedure UnregisterUdfObj(Obj: Pointer); cdecl; external 'afmmngr' name 'UnregisterUdfObj';
+function FindUdfObj(Handle: Pointer): Pointer; cdecl; external 'afmmngr' name 'FindUdfObj';
+
 { Returns the last error code of the operating system for an object }
 function GetLastErrorObj(var Handle:PtrUdf):integer;cdecl;
+var
+  afobj: TAFObj;
 begin
   result := 0;
   try
-    Result := TAFObj.FindObj(Handle,taoUnknow).LastError;
+    afobj := TAFObj.FindObj(Handle,taoUnknow);
+    if Assigned(afobj) then
+      Result := afobj.LastError;
   except
   end;
 end;
@@ -49,20 +57,30 @@ end;
 function MsgLastErrorObj(var Handle:PtrUdf):Pchar;cdecl;
 var
     s : string;
+    afobj: TAFObj;
 begin
+  result := nil;
   try
-    s:=TAFObj.FindObj(Handle,taoUnknow).MessageLastError;
+    afobj := TAFObj.FindObj(Handle,taoUnknow);
+    if not Assigned(afobj) then exit;
+    s:=afobj.MessageLastError;
     result := ib_util_malloc(Length(s)+1);
     strcopy(result,Pchar(s));
   except
+    result := nil;
   end;
 end;
 
 { Returns whether there was a mistake at the last operation with the object }
 function WasErrorObj(var Handle:PtrUdf):integer;cdecl;
+var
+  afobj: TAFObj;
 begin
+  result := FalseInt;
   try
-    result := Integer(TAFObj.FindObj(Handle,taoUnknow).WasError);
+    afobj := TAFObj.FindObj(Handle,taoUnknow);
+    if Assigned(afobj) then
+      result := Integer(afobj.WasError);
   except
     result := FalseInt;
   end;
@@ -70,10 +88,14 @@ end;
 
 { Returns whether an error exception if the last operation with the object }
 function WasErrorIsExceptionObj(var Handle:PtrUdf):integer;cdecl;
+var
+  afobj: TAFObj;
 begin
   result := FalseInt;
   try
-    result := Integer(TAFObj.FindObj(Handle,taoUnknow).LastErrorIsException);
+    afobj := TAFObj.FindObj(Handle,taoUnknow);
+    if Assigned(afobj) then
+      result := Integer(afobj.LastErrorIsException);
   except
   end;
 end;
@@ -104,24 +126,14 @@ end;
 function FreeAFObject(var Handle:PtrUdf):integer;cdecl;
 var
   obj:TObject;
-  vmt:PVmt;
-  curclass: String;
 begin
   result := FalseInt;
   try
-    obj := HandleToObj(Handle);
+    obj := TObject(FindUdfObj({%H-}Pointer(Handle)));
     if not Assigned(obj) then exit(FalseInt);
-    {check class}
-    Vmt := PVmt(Obj.ClassType);
-    curclass := vmt^.vClassName^;
-    if SameText(curclass,'TAFObj') or
-       SameText(curclass,'TXPathNodeSetVariable') then
-    begin
-      Obj.Free;
-      result := TrueInt;
-    end
-    else
-      result := FalseInt;
+    UnregisterUdfObj(obj);
+    Obj.Free;
+    result := TrueInt;
   except
     result := FalseInt;
   end;
@@ -149,7 +161,7 @@ end;
 
 function VersionEx():PChar;cdecl;
 begin
-  Result := VersionAFUDF;
+  Result := VersionExAFUDF();
 end;
 
 { Returns the type of operating system windows / linux and CPU architecture}
