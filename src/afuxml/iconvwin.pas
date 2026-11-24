@@ -24,7 +24,8 @@ type
   Piconv_t = ^iconv_t;
   iconv_t  = pointer;
 
-  size_t  = longword;
+  { C size_t: 4 bytes on 32-bit, 8 bytes on 64-bit (Win64 fix) }
+  size_t  = PtrUInt;
   pSize   = ^size_t;
   psize_t = pSize;
 
@@ -47,22 +48,34 @@ function Iconvert(S: string; var res: string; FromEncoding, ToEncoding: string):
 
 implementation
 
+uses SysUtils;
+
 function Iconvert(S: string; var res: string; FromEncoding, ToEncoding: string): longint;
 var
-  InLen, OutLen, Offset: longint;
+  InLen, OutLen: size_t;
+  Offset: PtrInt;
   Src, Dst: PChar;
   H:    iconv_t;
   lerr: plongint;
-  iconvres: longint;
+  iconvres: size_t;
 begin
+  { fast path: nothing to convert }
+  if SameText(FromEncoding, ToEncoding) then
+  begin
+    Res := S;
+    Exit(0);
+  end;
   H := iconv_open(PChar(ToEncoding), PChar(FromEncoding));
-  if H=nil then
+  { iconv_open returns (iconv_t)-1 on error, not nil }
+  if H = iconv_t(-1) then
   begin
     Res := S;
     Exit(-1);
   end;
   try
-    SetLength(Res, Length(S));
+    { 2x+8: growing conversions (cp1251 -> utf-8 doubles Cyrillic)
+      fit without an E2BIG restart }
+    SetLength(Res, Length(S) * 2 + 8);
     InLen  := Length(S);
     OutLen := Length(Res);
     Src    := PChar(S);
@@ -70,7 +83,7 @@ begin
     while InLen > 0 do
     begin
       iconvres := iconv(H, @Src, @InLen, @Dst, @OutLen);
-      if iconvres = longint(-1) then
+      if iconvres = size_t(-1) then
       begin
 
         lerr:=errno_location;
