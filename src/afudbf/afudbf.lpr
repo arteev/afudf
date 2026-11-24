@@ -17,6 +17,7 @@ library afudbf;
 {$MODE Delphi}
 
 uses
+  {$IFDEF UNIX}cthreads,{$ENDIF}
   smudfstatic,
   {$IfDef DEBUG}
   heaptrc,

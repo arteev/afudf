@@ -16,6 +16,7 @@ library afucrypt;
 
 {$MODE objfpc}
 uses
+  {$IFDEF UNIX}cthreads,{$ENDIF}
   smudfstatic,
   {$IfDef DEBUG}
   heaptrc,
